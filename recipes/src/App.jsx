@@ -1,12 +1,14 @@
 import React from "react";
 import { Header } from "./components/Header";
 import { Recipes } from "./components/Recipes";
+import { MainPage } from "./components/MainPage";
 
 function App() {
   return (
     <>
-      <Header />
-      <Recipes />
+    <MainPage/>
+      {/* <Header />
+      <Recipes /> */}
     </>
   );
 }
