@@ -6,8 +6,8 @@ import { MainPage } from "./components/MainPage";
 function App() {
   return (
     <>
-      {/* <Header />
-      <Recipes /> */}
+      <Header />
+      <Recipes />
     </>
   );
 }
