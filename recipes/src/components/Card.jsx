@@ -38,9 +38,11 @@ function Card({ recipe }) {
           </div>
         </a>
       </div>
+      {/* Create a darkened background to provide focus on the popup */}
       {toggleCardDetails && (
         <div className="fixed top-0 left-0 w-full h-full outline-none bg-gray-400 opacity-25"></div>
       )}
+      {/* Create the popup */}
       {toggleCardDetails && (
         <CardDetails
           recipe={recipe}
