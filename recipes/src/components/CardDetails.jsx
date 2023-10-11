@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 function CardDetails({ recipe, setToggleCardDetails }) {
+  // Click anywhere else outside the card will close the details popup
   function handleParentClick(e) {
     if (e.target === e.currentTarget) {
       setToggleCardDetails(false);
