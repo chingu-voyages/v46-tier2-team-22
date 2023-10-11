@@ -2,6 +2,8 @@ import { useState } from "react";
 import Card from "./Card";
 import dummyRecipes from "../data/dummyData";
 
+// RecipeList is a placeholder component to generate recipe cards. This will likely be replaced by the mainPage
+
 function RecipeList() {
   const [recipes] = useState(dummyRecipes);
 
