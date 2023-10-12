@@ -1,5 +1,4 @@
-import PropTypes from "prop-types";
-import { arrayOf, shape, number, string } from "prop-types";
+import { arrayOf, shape, number, string, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
@@ -66,14 +65,26 @@ function CardDetails({ recipe, setToggleCardDetails }) {
           </div>
         </div>
         <div className="flex border-t-2 p-5">
-          <h6 className="font-medium">Instructions</h6>
+          <h6 className="font-medium text-xs sm:text-xl">Instructions</h6>
           <ul className="px-5 text-xs list-disc list-inside">
             {recipe.instructions.map((step, idx) => (
               <li key={idx}>{step.display_text}</li>
             ))}
           </ul>
         </div>
-        <div className="flex justify-end pb-5 pr-5"></div>
+        <div className="flex border-t-2 p-5">
+          <h6 className="font-medium text-xs sm:text-xl">Video</h6>
+          {recipe.video_url === null ? (
+            <div className="px-5 text-xs sm:text-xl">No video not found</div>
+          ) : (
+            <a
+              className="px-5 text-xs sm:text-xl text-blue-500 hover:underline"
+              href={recipe.original_video_url}
+            >
+              Instruction video
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -103,8 +114,9 @@ CardDetails.propTypes = {
         display_text: string.isRequired,
       })
     ),
+    original_video_url: string,
   }),
-  setToggleCardDetails: PropTypes.func.isRequired,
+  setToggleCardDetails: func.isRequired,
 };
 
 export default CardDetails;

@@ -77,6 +77,7 @@ Card.propTypes = {
         display_text: string.isRequired,
       })
     ),
+    original_video_url: string,
   }),
 };
 
