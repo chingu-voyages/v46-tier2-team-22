@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { arrayOf, shape, number, string, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +10,10 @@ function CardDetails({ recipe, setToggleCardDetails }) {
       setToggleCardDetails(false);
     }
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div
