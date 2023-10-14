@@ -1,4 +1,3 @@
-import React from 'react';
 import saladPic from '../images/salads.jpg'
 
 export const MainPage = () => {
@@ -31,10 +30,10 @@ export const MainPage = () => {
           </div>
         </article>
       </section>
-      <section>
+      <section className='flex flex-wrap justify-center gap-10 border m-20 w-4/5 h-60'>
         <h1>input search holder</h1>
       </section>
-      <section>
+      <section className='flex items-center justify-evenly border mx-20 mb-20'>
         <h1>cards holder</h1>
       </section>
     </main>
