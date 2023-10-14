@@ -1,4 +1,5 @@
-import saladPic from '../images/salads.jpg'
+import saladPic from '../images/salads.jpg';
+
 
 export const MainPage = () => {
   return (
@@ -30,10 +31,10 @@ export const MainPage = () => {
           </div>
         </article>
       </section>
-      <section className='flex flex-wrap justify-center gap-10 border m-20 w-4/5 h-60'>
+      <section className='flex items-center justify-center border w-10/12 h-72 my-20'>
         <h1>input search holder</h1>
       </section>
-      <section className='flex items-center justify-evenly border mx-20 mb-20'>
+      <section className='flex flex-wrap items-center justify-evenly mx-20 mb-20'>
         <h1>cards holder</h1>
       </section>
     </main>
