@@ -5,7 +5,7 @@ export const MainPage = () => {
     <main className='flex flex-col items-center justify-center max-w-screen-25 mx-auto'>
       <section className='hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto'>
         <div className='flex items-center justify-center border w-10/12 h-3/4 my-20 bg-black/50'>
-          <p className='text-xl sm:text-2xl xl:text-3xl 2xl:text-6xl text-center m-20 font-medium text-white'>
+          <p className='text-xl sm:text-2xl xl:text-3xl 2xl:text-5xl text-center m-20 font-medium text-white'>
             Welcome to [App Name] - Your Culinary Companion! 🍳 Hungry for
             inspiration? Explore a world of flavors and ingredients right at
             your fingertips. Whether you are a seasoned chef or just starting
