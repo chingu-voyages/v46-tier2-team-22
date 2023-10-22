@@ -1,11 +1,16 @@
-import saladPic from '../images/salads.jpg';
+import { useState } from "react";
+import Card from "./Card";
+import saladPic from "../images/salads.jpg";
+import dummyRecipes from "../data/dummyData";
 
 export const MainPage = () => {
+  const [recipes] = useState(dummyRecipes);
+
   return (
-    <main className='flex flex-col items-center justify-center max-w-screen-25 mx-auto'>
-      <section className='hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto'>
-        <div className='flex items-center justify-center border w-10/12 h-3/4 my-20 bg-black/50'>
-          <p className='text-xl sm:text-2xl xl:text-3xl 2xl:text-5xl text-center m-20 font-medium text-white'>
+    <main className="flex flex-col items-center justify-center max-w-screen-25 mx-auto">
+      <section className="hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto">
+        <div className="flex items-center justify-center border w-10/12 h-3/4 my-20 bg-black/50">
+          <p className="text-xl sm:text-2xl xl:text-3xl 2xl:text-5xl text-center m-20 font-medium text-white">
             Welcome to [App Name] - Your Culinary Companion! 🍳 Hungry for
             inspiration? Explore a world of flavors and ingredients right at
             your fingertips. Whether you are a seasoned chef or just starting
@@ -20,13 +25,15 @@ export const MainPage = () => {
         </div>
       </section>
 
-      <section className='flex items-center bg-Gunmetal-gray w-screen max-w-screen-25 mx-auto'>
-        <article className='flex items-center justify-center sm:flex-col sm:justify-evenly lg:flex-row lg:justify-evenly  gap-10 h-1/4 m-10 sm:m-20 2xl:m-40'>
+      <section className="flex items-center bg-Gunmetal-gray w-screen max-w-screen-25 mx-auto">
+        <article className="flex items-center justify-center sm:flex-col sm:justify-evenly lg:flex-row lg:justify-evenly  gap-10 h-1/4 m-10 sm:m-20 2xl:m-40">
           {/* <article className='flex items-center justify-evenly h-1/4 m-5 gap-10 border-red-600 border-spacing-6'> */}
-          <div className='flex flex-col justify-center lg:justify-start lg:mr-10 my-0 '>
+          <div className="flex flex-col justify-center lg:justify-start lg:mr-10 my-0 ">
             {/* <div className='flex flex-col justify-start '> */}
-            <h1 className='text-xl text-center lg:text-left sm:text-2xl xl:text-4xl'>Title</h1>
-            <p className='flex flex-wrap text-center lg:text-left sm:text-xl xl:text-2xl 2xl:text-3xl'>
+            <h1 className="text-xl text-center lg:text-left sm:text-2xl xl:text-4xl">
+              Title
+            </h1>
+            <p className="flex flex-wrap text-center lg:text-left sm:text-xl xl:text-2xl 2xl:text-3xl">
               [App Name] streamlines your meal planning and prep. Input your
               ingredients or cravings, and we will provide curated recipes from
               quick weekday dinners to indulgent feasts. Each recipe includes
@@ -37,23 +44,27 @@ export const MainPage = () => {
               today!
             </p>
           </div>
-     
-            <img
-              className='hidden md:flex md:min-w-0 h-auto lg:min-w-0 xl:min-w-0'
-              src={saladPic}
-              alt=''
-            />
-          
+
+          <img
+            className="hidden md:flex md:min-w-0 h-auto lg:min-w-0 xl:min-w-0"
+            src={saladPic}
+            alt=""
+          />
         </article>
       </section>
-      <section className='flex items-center justify-center w-screen max-w-screen-25 mx-auto'>
-        <div className='flex items-center justify-center border w-10/12 h-72 my-20 bg-Pewter  shadow-lg'>
+      <section className="flex items-center justify-center w-screen max-w-screen-25 mx-auto">
+        <div className="flex items-center justify-center border w-10/12 h-72 my-20 bg-Pewter  shadow-lg">
           <h1>input search holder</h1>
         </div>
       </section>
 
-      <section className='flex flex-wrap items-center justify-evenly mx-20 mb-20 bg-Gunmetal-gray w-screen max-w-screen-25 mx-auto'>
-        <h1>cards holder</h1>
+      <section
+        className="relative flex flex-wrap items-center justify-evenly mx-auto mb-20 py-6 bg-Gunmetal-gray w-screen max-w-screen-25"
+        id="card-holder"
+      >
+        {recipes.map(recipe => (
+          <Card recipe={recipe} key={recipe.id} />
+        ))}
       </section>
     </main>
   );

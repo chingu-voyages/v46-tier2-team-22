@@ -1,25 +1,10 @@
-import { useEffect } from "react";
 import { arrayOf, shape, number, string, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 function CardDetails({ recipe, setToggleCardDetails }) {
-  // Click anywhere else outside the card will close the details popup
-  function handleParentClick(e) {
-    if (e.target === e.currentTarget) {
-      setToggleCardDetails(false);
-    }
-  }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
-    <div
-      className="absolute top-0 left-0 w-full h-full outline-none"
-      onClick={handleParentClick}
-    >
+    <div className="absolute top-10 left-1/6 w-4/5 h-auto outline-none">
       <div className="bg-Gunmetal-gray">
         <div className="flex text-white">
           <div className="flex flex-col justify-center w-1/2">
@@ -89,12 +74,12 @@ function CardDetails({ recipe, setToggleCardDetails }) {
               </td>
               <td>
                 {recipe.video_url === null ? (
-                  <div className="px-5 text-xs sm:text-xl text-core-gunmetal-gray">
+                  <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
                     No video not found
                   </div>
                 ) : (
                   <a
-                    className="px-5 text-md text-core-burnt-orange hover:underline"
+                    className="px-5 text-md text-Burnt-orange hover:underline"
                     href={recipe.original_video_url}
                   >
                     Instruction video
