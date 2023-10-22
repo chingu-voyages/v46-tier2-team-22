@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import dummyRecipes from "../data/dummyData";
 
 export const Recipes = () => {
