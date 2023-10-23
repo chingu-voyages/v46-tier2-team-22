@@ -1,11 +1,7 @@
-import { useState } from "react";
-import Card from "./Card";
+import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
-import dummyRecipes from "../data/dummyData";
 
 export const MainPage = () => {
-  const [recipes] = useState(dummyRecipes);
-
   return (
     <main className="flex flex-col items-center justify-center max-w-screen-25 mx-auto">
       <section className="hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto">
@@ -58,13 +54,8 @@ export const MainPage = () => {
         </div>
       </section>
 
-      <section
-        className="relative flex flex-wrap items-center justify-evenly mx-auto mb-20 py-6 bg-Gunmetal-gray w-screen max-w-screen-25"
-        id="card-holder"
-      >
-        {recipes.map(recipe => (
-          <Card recipe={recipe} key={recipe.id} />
-        ))}
+      <section>
+        <CardList />
       </section>
     </main>
   );
