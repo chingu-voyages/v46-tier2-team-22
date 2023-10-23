@@ -1,9 +1,10 @@
+import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
 
 export const MainPage = () => {
   return (
-    <main className="flex flex-col items-center justify-center max-w-screen-25 mx-auto">
+    <main className="flex flex-col items-center justify-center max-w-screen-25 mx-auto font-montserrat">
       <section className="hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto">
         <div className="flex items-center justify-center border w-10/12 h-3/4 my-20 bg-black/50">
           <p className="text-xl sm:text-2xl xl:text-3xl 2xl:text-5xl text-center m-20 font-medium text-white">
@@ -48,9 +49,9 @@ export const MainPage = () => {
           />
         </article>
       </section>
-      <section className="flex items-center justify-center w-screen max-w-screen-25 mx-auto">
-        <div className="flex items-center justify-center border w-10/12 h-72 my-20 bg-Pewter  shadow-lg">
-          <h1>input search holder</h1>
+      <section className="flex items-center justify-center w-screen max-w-screen-25 h-[600px] py-12 bg-Pewter mx-auto">
+        <div className="flex items-center justify-center w-10/12 border border-orange-700 h-full  bg-Pewter shadow-sm">
+          <SearchForm />
         </div>
       </section>
 
