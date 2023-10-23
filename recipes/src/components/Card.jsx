@@ -6,11 +6,17 @@ import CardDetails from "./CardDetails";
 function Card({ recipe }) {
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
 
+  function handleParentClick(e) {
+    if (e.target === e.currentTarget) {
+      setToggleCardDetails(false);
+    }
+  }
+
   return (
     <>
-      <div className="flex flex-col border-solid overflow-hidden shadow-lg m-4 w-40 md:w-72 lg:w-96 h-fit bg-gray-50">
+      <div className="flex flex-col border-solid overflow-hidden shadow-lg m-4 w-40 md:w-72 lg:w-96 h-fit bg-Pewter">
         <a
-          className="hover:bg-gray-200 transition-all duration-500 cursor-pointer"
+          className="hover:bg-Freesia transition-all duration-500 cursor-pointer"
           onClick={() => setToggleCardDetails(!toggleCardDetails)}
         >
           <img src={recipe.thumbnail_url} alt={"dish" + recipe.id} />
@@ -32,15 +38,18 @@ function Card({ recipe }) {
                 No ratings submitted
               </p>
             )}
-            <p className="text-xs  sm:text-sm md:text-md text-blue-600 p-2">
+            <p className="text-xs  sm:text-sm md:text-md text-Burnt-orange p-2">
               Go to recipe
             </p>
           </div>
         </a>
       </div>
-      {/* Create a darkened background to provide focus on the popup */}
+      {/* Create a darkened background to provide focus on the popup & click outside the popup to close */}
       {toggleCardDetails && (
-        <div className="fixed top-0 left-0 w-full h-full outline-none bg-gray-400 opacity-25"></div>
+        <div
+          className="absolute top-0 left-0 w-screen h-full outline-none bg-gray-600 opacity-50"
+          onClick={handleParentClick}
+        ></div>
       )}
       {/* Create the popup */}
       {toggleCardDetails && (
