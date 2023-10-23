@@ -27,6 +27,9 @@ export default {
       screens: {
         '25': '25in',
       },
+      fontFamily: {
+        'montserrat': ['Montserrat', 'sans'],
+      },
     },
   },
   plugins: [],
