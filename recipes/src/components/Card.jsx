@@ -19,7 +19,11 @@ function Card({ recipe }) {
           className="hover:bg-Freesia transition-all duration-500 cursor-pointer"
           onClick={() => setToggleCardDetails(!toggleCardDetails)}
         >
-          <img src={recipe.thumbnail_url} alt={"dish" + recipe.id} />
+          <img
+            className="object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
+            src={recipe.thumbnail_url}
+            alt={"dish" + recipe.id}
+          />
           <div className="grow flex flex-col text-right p-2 md:h-1/2 justify-between">
             <p className="p-2 text-xs sm:text-sm md:text-md font-bold">
               {recipe.name}

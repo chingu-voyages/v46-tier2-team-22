@@ -9,7 +9,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
         <div className="flex text-white">
           <div className="flex flex-col justify-center w-1/2">
             <img
-              className="text-black"
+              className="text-black object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
               src={recipe.thumbnail_url}
               alt={"dish" + recipe.id}
             />
@@ -78,12 +78,14 @@ function CardDetails({ recipe, setToggleCardDetails }) {
                     No video not found
                   </div>
                 ) : (
-                  <a
-                    className="px-5 text-md text-Burnt-orange hover:underline"
-                    href={recipe.original_video_url}
-                  >
-                    Instruction video
-                  </a>
+                  <iframe
+                    src={recipe.original_video_url}
+                    width="400"
+                    height="250"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                  />
                 )}
               </td>
             </tr>
