@@ -9,7 +9,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
         <div className="flex text-white">
           <div className="flex flex-col justify-center w-1/2">
             <img
-              className="text-black"
+              className="text-black object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
               src={recipe.thumbnail_url}
               alt={"dish" + recipe.id}
             />
