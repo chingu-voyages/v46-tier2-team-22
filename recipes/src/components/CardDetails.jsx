@@ -3,6 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 function CardDetails({ recipe, setToggleCardDetails }) {
+  function isEmpty(obj) {
+    for (const prop in obj) {
+      if (Object.hasOwn(obj, prop)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   return (
     <div className="absolute top-10 left-1/6 w-4/5 h-auto outline-none">
       <div className="bg-Gunmetal-gray">
@@ -86,6 +96,61 @@ function CardDetails({ recipe, setToggleCardDetails }) {
                     allowFullScreen
                     title="video"
                   />
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6 className="font-medium text-xs sm:text-xl">
+                  Nutrition Value
+                </h6>
+              </td>
+              <td>
+                {isEmpty(recipe.more_info.nutrition) ? (
+                  <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
+                    No nutrition values found
+                  </div>
+                ) : (
+                  <table className="text-xs">
+                    <tbody>
+                      <tr>
+                        <td className="font-bold pt-1">Calories</td>
+                        <td className="pl-5 pt-1">
+                          {recipe.more_info.nutrition.calories}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold">Total Fat</td>
+                        <td className="pl-5">
+                          {recipe.more_info.nutrition.fat}g
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold">Total Carbohydrates</td>
+                        <td className="pl-5">
+                          {recipe.more_info.nutrition.carbohydrates}g
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="pl-3">Dietary Fiber</td>
+                        <td className="pl-5">
+                          {recipe.more_info.nutrition.fiber}g
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="pl-3">Sugars</td>
+                        <td className="pl-5">
+                          {recipe.more_info.nutrition.sugar}g
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="font-bold pb-1">Protein</td>
+                        <td className="pl-5 pb-1">
+                          {recipe.more_info.nutrition.protein}g
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 )}
               </td>
             </tr>
