@@ -78,12 +78,14 @@ function CardDetails({ recipe, setToggleCardDetails }) {
                     No video not found
                   </div>
                 ) : (
-                  <a
-                    className="px-5 text-md text-Burnt-orange hover:underline"
-                    href={recipe.original_video_url}
-                  >
-                    Instruction video
-                  </a>
+                  <iframe
+                    src={recipe.original_video_url}
+                    width="400"
+                    height="250"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                  />
                 )}
               </td>
             </tr>
