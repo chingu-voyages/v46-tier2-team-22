@@ -1,10 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { arrayOf, shape, number, string } from "prop-types";
 
 import CardDetails from "./CardDetails";
 
 function Card({ recipe }) {
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
+
+
+
+    const fetchData = async () => {
+      const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipe.id}`;
+      const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': 'ee0b1fde36mshe7ecd0895ee5283p1a0ad4jsna86fc2392562',
+          'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+        }
+      };
+      
+      try {
+        const response = await fetch(url, options);
+        if (response.ok) {
+          const result = await response.json();
+          return result.nutrition;
+        } else {
+          throw new Error('Failed to fetch nutrition data');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+  
+  
+
+const renderCardDetails = async () => {
+  try {
+    const nutritionData = await fetchData();
+    recipe.nutrition = nutritionData;
+    setToggleCardDetails(!toggleCardDetails);
+  } catch (error) {
+    console.error(error);
+
+  }
+};
 
   function handleParentClick(e) {
     if (e.target === e.currentTarget) {
@@ -17,7 +56,7 @@ function Card({ recipe }) {
       <div className="flex flex-col border-solid overflow-hidden shadow-lg m-4 w-40 md:w-72 lg:w-96 h-fit bg-Pewter">
         <a
           className="hover:bg-Freesia transition-all duration-500 cursor-pointer"
-          onClick={() => setToggleCardDetails(!toggleCardDetails)}
+          onClick={renderCardDetails}
         >
           <img
             className="object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"

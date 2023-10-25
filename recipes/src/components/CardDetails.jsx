@@ -13,6 +13,8 @@ function CardDetails({ recipe, setToggleCardDetails }) {
     return true;
   }
 
+  console.log(recipe.id, recipe.nutrition)
+
   return (
     <div className="absolute top-10 left-1/6 w-4/5 h-auto outline-none">
       <div className="bg-Gunmetal-gray">
