@@ -1,6 +1,7 @@
 import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
+import ScrollToTop from "./ScrollToTop";
 
 export const MainPage = () => {
   return (
@@ -55,9 +56,10 @@ export const MainPage = () => {
         </div>
       </section>
 
-      <section className= "flex justify-center items-center  bg-Gunmetal-gray w-full">
+      <section className="flex justify-center items-center  bg-Gunmetal-gray w-full">
         <CardList />
       </section>
+      <ScrollToTop />
     </main>
   );
 };
