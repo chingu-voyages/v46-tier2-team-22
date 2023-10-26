@@ -55,7 +55,7 @@ export const MainPage = () => {
         </div>
       </section>
 
-      <section>
+      <section className= "flex justify-center items-center  bg-Gunmetal-gray w-full">
         <CardList />
       </section>
     </main>
