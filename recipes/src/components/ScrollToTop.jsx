@@ -21,7 +21,7 @@ function ScrollToTop() {
   window.addEventListener("scroll", toggleVisible);
 
   return btnVisible ? (
-    <button className="fixed bottom-7 right-10 z-0 text-black text-3xl">
+    <button className="fixed bottom-7 right-10 z-0 text-black hover:text-Cinnabar text-3xl">
       <FontAwesomeIcon icon={faCircleUp} onClick={scrollToTop} />
     </button>
   ) : (
