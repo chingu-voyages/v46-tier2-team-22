@@ -1,12 +1,22 @@
 import { useState } from "react";
-
 import Card from "./Card";
-import dummyRecipes from "../data/dummyData";
+// import dummyRecipes from "../data/dummyData";
+import PropTypes from 'prop-types';
 
-function CardList() {
+// Your component here
+
+CardList.propTypes = {
+  cardDetails: PropTypes.array.isRequired,
+};
+
+
+function CardList({cardDetails}) {
   const renderedCards = 3; //change value after dummy is replaced
-  const [recipes] = useState(dummyRecipes);
+  // const [recipes] = useState(cardDetails);
+  const recipes = cardDetails
   const [loadMore, setLoadMore] = useState(renderedCards);
+
+  console.log(recipes)
 
   const handleLoadMore = () => {
     setLoadMore(loadMore + renderedCards);
