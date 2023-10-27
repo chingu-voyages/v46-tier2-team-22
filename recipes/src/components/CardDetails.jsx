@@ -13,7 +13,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
     return true;
   }
 
-  console.log(recipe.id, recipe.nutrition)
+  console.log(recipe.id, recipe.nutrition);
 
   return (
     <div className="absolute top-10 left-1/6 w-4/5 h-auto outline-none">
@@ -21,7 +21,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
         <div className="flex text-white">
           <div className="flex flex-col justify-center w-1/2">
             <img
-              className="text-black object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
+              className="text-black object-cover w-full h-40 sm:h-48 md:h-64 lg:h-full"
               src={recipe.thumbnail_url}
               alt={"dish" + recipe.id}
             />
@@ -44,7 +44,9 @@ function CardDetails({ recipe, setToggleCardDetails }) {
               <div className="flex flex-col pr-4">
                 <p className="text-xs uppercase">Cook</p>
                 <p className="text-xs">
-                  {recipe.cook_time_minutes + " minutes"}
+                  {recipe.cook_time_minutes
+                    ? recipe.cook_time_minutes + " minutes"
+                    : recipe.total_time_tier.display_tier}
                 </p>
               </div>
               <div className="flex flex-col pl-4 border-l border-gray-400">
@@ -66,7 +68,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
             </div>
           </div>
         </div>
-        <table className="border-separate p-5 border-spacing-x-5 border-spacing-y-2 bg-Pewter border-t-2">
+        <table className="border-separate p-5 border-spacing-x-3 border-spacing-y-5 bg-Pewter border-t-2">
           <tbody>
             <tr>
               <td>

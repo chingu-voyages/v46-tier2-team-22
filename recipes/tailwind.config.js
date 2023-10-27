@@ -25,7 +25,15 @@ export default {
         25: "25in",
       },
       fontFamily: {
-        'montserrat': ['Montserrat', 'sans'],
+        montserrat: ["Montserrat", "sans"],
+      },
+      width: {
+        104: "26rem",
+        128: "32rem",
+      },
+      height: {
+        104: "26rem",
+        128: "32rem",
       },
     },
   },
