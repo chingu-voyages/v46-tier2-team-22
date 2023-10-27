@@ -58,7 +58,7 @@ function Card({ recipe }) {
             alt={"dish" + recipe.id}
           />
           <div className="grow flex flex-col text-right p-2 sm:p-4 md:p-6 lg:p-7 md:h-1/2 justify-between">
-            <span className="p-2 text-xs sm:text-sm md:text-md lg:text-lg font-bold">
+            <span className="p-2 text-xs sm:text-sm md:text-md font-bold">
               {recipe.name}
             </span>
             {recipe.user_ratings.score !== null && (

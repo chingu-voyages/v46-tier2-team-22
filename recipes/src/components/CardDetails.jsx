@@ -26,7 +26,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
               alt={"dish" + recipe.id}
             />
           </div>
-          <div className="flex flex-col px-8 py-5 justify-center w-1/2">
+          <div className="flex flex-col px-10 py-20 justify-center w-1/2">
             <div className="flex w-full justify-between">
               <h5 className="text-xs sm:text-xl font-bold">{recipe.name}</h5>
               <div>
