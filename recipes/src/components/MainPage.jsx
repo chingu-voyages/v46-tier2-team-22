@@ -1,8 +1,30 @@
+import { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
 
+
 export const MainPage = () => {
+  const [recipeData, setRecipeData] = useState([]);
+   
+  useEffect(() => {  
+  // fetch data from an api and set the state with it
+  async function fetchData(){
+    const response = await fetch("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes&q=tomato", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-key": "ee0b1fde36mshe7ecd0895ee5283p1a0ad4jsna86fc2392562",
+      "x-rapidapi-host": "tasty.p.rapidapi.com"
+    }
+  });
+  const data = await response.json();
+  setRecipeData(data.results);
+  }
+  fetchData();
+  }, []);
+
+  console.log(recipeData)
+
   return (
     <main className="flex flex-col items-center justify-center max-w-screen-25 mx-auto font-montserrat">
       <section className="hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto">

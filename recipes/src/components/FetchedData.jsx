@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+export const FetchData = () => {
+
+
 const FetchedData = () => {
 
   const [recipeData, setRecipeData] = useState([]);
