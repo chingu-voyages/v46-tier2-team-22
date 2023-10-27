@@ -50,7 +50,7 @@ export const MainPage = () => {
           />
         </article>
       </section>
-      <section className="flex items-center justify-center w-screen max-w-screen-25 h-[600px] py-12 bg-Pewter mx-auto">
+      <section className="flex items-center justify-center w-screen max-w-screen-25 h-[300px] md:h-[400px] lg:h-[600px] py-5 md:py-10 lg:py-12 bg-Pewter mx-auto">
         <div className="flex items-center justify-center w-10/12 border border-orange-700 h-full  bg-Pewter shadow-sm">
           <SearchForm />
         </div>
