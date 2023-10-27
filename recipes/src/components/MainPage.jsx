@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
+import ScrollToTop from "./ScrollToTop";
 
 
 export const MainPage = () => {
@@ -77,9 +78,10 @@ export const MainPage = () => {
         </div>
       </section>
 
-      <section>
+      <section className="flex justify-center items-center  bg-Gunmetal-gray w-full">
         <CardList />
       </section>
+      <ScrollToTop />
     </main>
   );
 };
