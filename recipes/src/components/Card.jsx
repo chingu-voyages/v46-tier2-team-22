@@ -1,19 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { arrayOf, shape, number, string } from 'prop-types';
 
 import CardDetails from './CardDetails';
 
 function Card({ recipe }) {
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
-  const [recipes, setRecipes] = useState(recipe);
-
-  useEffect(() => {
-    if (recipe) {
-      setRecipes(recipe);
-    }
-  }, [recipe]);
-
-  console.log(recipes);
 
   const fetchData = async () => {
     const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipe.id}`;

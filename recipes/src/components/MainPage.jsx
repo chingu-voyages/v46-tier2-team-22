@@ -6,12 +6,14 @@ import ScrollToTop from './ScrollToTop';
 
 export const MainPage = () => {
   const [recipeData, setRecipeData] = useState([]);
-
+  const [recipeIngredients, setRecipeIngredients] = useState('');
+  let [normalizeRecipeIngredients, setNormalizeRecipeIngredients] =
+    useState('corn');
   useEffect(() => {
     // fetch data from an api and set the state with it
     async function fetchData() {
       const response = await fetch(
-        'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes&q=tomato',
+        `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes&q=${normalizeRecipeIngredients}`,
         {
           method: 'GET',
           headers: {
@@ -27,9 +29,17 @@ export const MainPage = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [normalizeRecipeIngredients]);
 
-  console.log(recipeData);
+  const inputIngredients = (ingredients) => {
+    setRecipeIngredients(ingredients);
+  };
+
+  useEffect(() => {
+    const regex = /[ ,]/g;
+    let newNormalizeRecipeIngredients = recipeIngredients.replace(regex, '%2C');
+    setNormalizeRecipeIngredients(newNormalizeRecipeIngredients);
+  }, [recipeIngredients]);
 
   return (
     <main className='flex flex-col items-center justify-center max-w-screen-25 mx-auto font-montserrat'>
@@ -79,7 +89,7 @@ export const MainPage = () => {
       </section>
       <section className='flex items-center justify-center w-screen max-w-screen-25 h-[600px] py-12 bg-Pewter mx-auto'>
         <div className='flex items-center justify-center w-10/12 border border-orange-700 h-full  bg-Pewter shadow-sm'>
-          <SearchForm />
+          <SearchForm ingredients={inputIngredients} />
         </div>
       </section>
 
