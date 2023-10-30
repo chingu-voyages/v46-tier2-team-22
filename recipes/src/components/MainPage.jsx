@@ -1,9 +1,46 @@
+import { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
 import ScrollToTop from "./ScrollToTop";
 
 export const MainPage = () => {
+  const [recipeData, setRecipeData] = useState([]);
+  const [recipeIngredients, setRecipeIngredients] = useState("");
+  let [normalizeRecipeIngredients, setNormalizeRecipeIngredients] =
+    useState("corn");
+  useEffect(() => {
+    // fetch data from an api and set the state with it
+    async function fetchData() {
+      const response = await fetch(
+        `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes&q=${normalizeRecipeIngredients}`,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "266791d15fmsh037799e02266535p19f0bajsn2773c13e0d46",
+            "x-rapidapi-host": "tasty.p.rapidapi.com",
+          },
+        }
+      );
+      const data = await response.json();
+      if (data && data.results) {
+        setRecipeData(data.results);
+      }
+    }
+    fetchData();
+  }, [normalizeRecipeIngredients]);
+
+  const inputIngredients = ingredients => {
+    setRecipeIngredients(ingredients);
+  };
+
+  useEffect(() => {
+    const regex = /[ ,]/g;
+    let newNormalizeRecipeIngredients = recipeIngredients.replace(regex, "%2C");
+    setNormalizeRecipeIngredients(newNormalizeRecipeIngredients);
+  }, [recipeIngredients]);
+
   return (
     <main className="flex flex-col items-center justify-center max-w-screen-25 mx-auto font-montserrat">
       <section className="hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto">
@@ -52,12 +89,12 @@ export const MainPage = () => {
       </section>
       <section className="flex items-center justify-center w-screen max-w-screen-25 h-[300px] md:h-[400px] lg:h-[600px] py-5 md:py-10 lg:py-12 bg-Pewter mx-auto">
         <div className="flex items-center justify-center w-10/12 border border-orange-700 h-full  bg-Pewter shadow-sm">
-          <SearchForm />
+          <SearchForm ingredients={inputIngredients} />
         </div>
       </section>
 
       <section className="flex justify-center items-center  bg-Gunmetal-gray w-full">
-        <CardList />
+        <CardList cardDetails={recipeData} />
       </section>
       <ScrollToTop />
     </main>

@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { arrayOf, shape, number, string } from "prop-types";
 
 import CardDetails from "./CardDetails";
 
 function Card({ recipe }) {
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
+  const [moreDetailsRecipeId, setMoreDetailsRecipeId] = useState(0);
+  const [nutrition, setNutrition] = useState({});
 
-  const fetchData = async () => {
-    const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipe.id}`;
+  const fetchData = async recipeId => {
+    const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`;
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "ee0b1fde36mshe7ecd0895ee5283p1a0ad4jsna86fc2392562",
+        "X-RapidAPI-Key": "266791d15fmsh037799e02266535p19f0bajsn2773c13e0d46",
         "X-RapidAPI-Host": "tasty.p.rapidapi.com",
       },
     };
@@ -29,15 +31,20 @@ function Card({ recipe }) {
     }
   };
 
-  const renderCardDetails = async () => {
-    try {
-      const nutritionData = await fetchData();
-      recipe.nutrition = nutritionData;
-      setToggleCardDetails(!toggleCardDetails);
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    const renderCardDetails = async () => {
+      try {
+        const nutritionData = await fetchData(moreDetailsRecipeId);
+        setNutrition(nutritionData);
+        setToggleCardDetails(!toggleCardDetails);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (moreDetailsRecipeId) {
+      renderCardDetails();
     }
-  };
+  }, [moreDetailsRecipeId]);
 
   function handleParentClick(e) {
     if (e.target === e.currentTarget) {
@@ -50,7 +57,9 @@ function Card({ recipe }) {
       <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-48 md:w-72 lg:w-104 h-fit bg-Pewter">
         <a
           className="hover:bg-Freesia transition-all duration-500 cursor-pointer"
-          onClick={renderCardDetails}
+          onClick={() => {
+            setMoreDetailsRecipeId(recipe.id);
+          }}
         >
           <img
             className="object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
@@ -92,6 +101,7 @@ function Card({ recipe }) {
       {toggleCardDetails && (
         <CardDetails
           recipe={recipe}
+          nutrition={nutrition}
           setToggleCardDetails={setToggleCardDetails}
         />
       )}

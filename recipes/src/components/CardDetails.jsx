@@ -2,7 +2,7 @@ import { arrayOf, shape, number, string, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-function CardDetails({ recipe, setToggleCardDetails }) {
+function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
   function isEmpty(obj) {
     for (const prop in obj) {
       if (Object.hasOwn(obj, prop)) {
@@ -16,7 +16,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
   return (
     <div className="absolute top-10 left-1/6 w-4/5 h-auto outline-none">
       <div className="bg-Gunmetal-gray">
-        <div className="flex text-white border flex-col-reverse lg:flex-row " >
+        <div className="flex text-white border flex-col-reverse lg:flex-row ">
           <div className="flex flex-col justify-center md:w-full lg:w-1/2">
             <img
               className="text-black object-cover w-full h-40 sm:h-48 md:h-64 lg:h-full"
@@ -70,7 +70,9 @@ function CardDetails({ recipe, setToggleCardDetails }) {
           <tbody>
             <tr className="flex flex-col lg:flex-row m-3">
               <td>
-                <h6 className="font-medium text-xs sm:text-xl mb-3">Instructions</h6>
+                <h6 className="font-medium text-xs sm:text-xl mb-3">
+                  Instructions
+                </h6>
               </td>
               <td>
                 <ul className="px-12 text-xs list-disc list-outside space-y-2">
@@ -91,7 +93,6 @@ function CardDetails({ recipe, setToggleCardDetails }) {
               </div>
             ) : (
               <iframe
-              
                 src={recipe.original_video_url}
                 width="400"
                 height="250"
@@ -105,7 +106,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
             <h6 className="font-medium text-xs sm:text-xl pt-8 pb-5">
               Nutrition Value
             </h6>
-            {isEmpty(recipe.more_info.nutrition) ? (
+            {isEmpty(nutrition) ? (
               <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
                 No nutrition values found
               </div>
@@ -115,35 +116,31 @@ function CardDetails({ recipe, setToggleCardDetails }) {
                   <tr>
                     <td className="font-bold pt-1">Calories</td>
                     <td className="pl-5 pt-2 text-right">
-                      {recipe.more_info.nutrition.calories}
+                      {nutrition.calories}
                     </td>
                   </tr>
                   <tr>
                     <td className="font-bold">Total Fat</td>
-                    <td className="pl-5 pt-2 text-right">{recipe.more_info.nutrition.fat}g</td>
+                    <td className="pl-5 pt-2 text-right">{nutrition.fat}g</td>
                   </tr>
                   <tr>
                     <td className="font-bold">Total Carbohydrates</td>
                     <td className="pl-5 pt-2 text-right">
-                      {recipe.more_info.nutrition.carbohydrates}g
+                      {nutrition.carbohydrates}g
                     </td>
                   </tr>
                   <tr>
                     <td className="pl-3">Dietary Fiber</td>
-                    <td className="pl-5 text-right">
-                      {recipe.more_info.nutrition.fiber}g
-                    </td>
+                    <td className="pl-5 text-right">{nutrition.fiber}g</td>
                   </tr>
                   <tr>
                     <td className="pl-3">Sugars</td>
-                    <td className="pl-5 text-right">
-                      {recipe.more_info.nutrition.sugar}g
-                    </td>
+                    <td className="pl-5 text-right">{nutrition.sugar}g</td>
                   </tr>
                   <tr>
                     <td className="font-bold py-2">Protein</td>
                     <td className="pl-5 pb-1 text-right">
-                      {recipe.more_info.nutrition.protein}g
+                      {nutrition.protein}g
                     </td>
                   </tr>
                 </tbody>
@@ -181,6 +178,14 @@ CardDetails.propTypes = {
       })
     ),
     original_video_url: string,
+  }),
+  nutrition: shape({
+    calories: number,
+    fat: number,
+    carbohydrates: number,
+    fiber: number,
+    sugar: number,
+    protein: number,
   }),
   setToggleCardDetails: func.isRequired,
 };
