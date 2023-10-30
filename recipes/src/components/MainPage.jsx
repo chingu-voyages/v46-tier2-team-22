@@ -5,10 +5,12 @@ import saladPic from "../images/salads.jpg";
 import ScrollToTop from "./ScrollToTop";
 
 export const MainPage = () => {
+  const [isChangedState, setIsChangedState] = useState(false);
   const [recipeData, setRecipeData] = useState([]);
   const [recipeIngredients, setRecipeIngredients] = useState("");
-  let [normalizeRecipeIngredients, setNormalizeRecipeIngredients] =
+  const [normalizeRecipeIngredients, setNormalizeRecipeIngredients] =
     useState("corn");
+
   useEffect(() => {
     // fetch data from an api and set the state with it
     async function fetchData() {
@@ -28,7 +30,9 @@ export const MainPage = () => {
         setRecipeData(data.results);
       }
     }
-    fetchData();
+    if (isChangedState || normalizeRecipeIngredients != "") {
+      fetchData();
+    }
   }, [normalizeRecipeIngredients]);
 
   const inputIngredients = ingredients => {
@@ -89,7 +93,10 @@ export const MainPage = () => {
       </section>
       <section className="flex items-center justify-center w-screen max-w-screen-25 h-[300px] md:h-[400px] lg:h-[600px] py-5 md:py-10 lg:py-12 bg-Pewter mx-auto">
         <div className="flex items-center justify-center w-10/12 border border-orange-700 h-full  bg-Pewter shadow-sm">
-          <SearchForm ingredients={inputIngredients} />
+          <SearchForm
+            ingredients={inputIngredients}
+            setIsChangedState={setIsChangedState}
+          />
         </div>
       </section>
 

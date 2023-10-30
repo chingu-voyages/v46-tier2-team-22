@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Card from './Card';
+import { useState } from "react";
+import Card from "./Card";
 // import dummyRecipes from "../data/dummyData";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Your component here
 
@@ -11,7 +11,6 @@ CardList.propTypes = {
 
 function CardList({ cardDetails }) {
   const renderedCards = 3; //change value after dummy is replaced
-  // const [recipes] = useState(cardDetails);
   const recipes = cardDetails;
   const [loadMore, setLoadMore] = useState(renderedCards);
 
@@ -20,19 +19,19 @@ function CardList({ cardDetails }) {
   };
 
   return (
-    <div className=' flex flex-col'>
+    <div className="flex flex-col">
       <div
-        className='relative flex flex-wrap items-center justify-evenly mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-25'
-        id='card-holder'
+        className="relative flex flex-wrap items-center justify-evenly mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-25"
+        id="card-holder"
       >
-        {recipes.slice(0, loadMore).map((recipe) => (
+        {recipes.slice(0, loadMore).map(recipe => (
           <Card recipe={recipe} key={recipe.id} />
         ))}
       </div>
       {loadMore < recipes.length && (
         <button
           onClick={handleLoadMore}
-          className='w-36 border border-black m-4 p-3 rounded-sm self-center'
+          className="w-36 border border-black m-4 p-3 rounded-sm self-center"
         >
           load more
         </button>
