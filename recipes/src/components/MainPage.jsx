@@ -18,7 +18,7 @@ export const MainPage = () => {
           method: "GET",
           headers: {
             "x-rapidapi-key":
-              "1e16a8d7aemsh965bef850564727p10cb7bjsna6a7185b6c67",
+              "266791d15fmsh037799e02266535p19f0bajsn2773c13e0d46",
             "x-rapidapi-host": "tasty.p.rapidapi.com",
           },
         }

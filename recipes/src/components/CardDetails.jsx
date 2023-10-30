@@ -2,8 +2,7 @@ import { arrayOf, shape, number, string, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-function CardDetails({ recipe, setToggleCardDetails }) {
-  console.log(recipe);
+function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
   function isEmpty(obj) {
     for (const prop in obj) {
       if (Object.hasOwn(obj, prop)) {
@@ -107,7 +106,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
             <h6 className="font-medium text-xs sm:text-xl pt-8 pb-5">
               Nutrition Value
             </h6>
-            {isEmpty(recipe.more_info.nutrition) ? (
+            {isEmpty(nutrition) ? (
               <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
                 No nutrition values found
               </div>
@@ -117,37 +116,31 @@ function CardDetails({ recipe, setToggleCardDetails }) {
                   <tr>
                     <td className="font-bold pt-1">Calories</td>
                     <td className="pl-5 pt-2 text-right">
-                      {recipe.more_info.nutrition.calories}
+                      {nutrition.calories}
                     </td>
                   </tr>
                   <tr>
                     <td className="font-bold">Total Fat</td>
-                    <td className="pl-5 pt-2 text-right">
-                      {recipe.more_info.nutrition.fat}g
-                    </td>
+                    <td className="pl-5 pt-2 text-right">{nutrition.fat}g</td>
                   </tr>
                   <tr>
                     <td className="font-bold">Total Carbohydrates</td>
                     <td className="pl-5 pt-2 text-right">
-                      {recipe.more_info.nutrition.carbohydrates}g
+                      {nutrition.carbohydrates}g
                     </td>
                   </tr>
                   <tr>
                     <td className="pl-3">Dietary Fiber</td>
-                    <td className="pl-5 text-right">
-                      {recipe.more_info.nutrition.fiber}g
-                    </td>
+                    <td className="pl-5 text-right">{nutrition.fiber}g</td>
                   </tr>
                   <tr>
                     <td className="pl-3">Sugars</td>
-                    <td className="pl-5 text-right">
-                      {recipe.more_info.nutrition.sugar}g
-                    </td>
+                    <td className="pl-5 text-right">{nutrition.sugar}g</td>
                   </tr>
                   <tr>
                     <td className="font-bold py-2">Protein</td>
                     <td className="pl-5 pb-1 text-right">
-                      {recipe.more_info.nutrition.protein}g
+                      {nutrition.protein}g
                     </td>
                   </tr>
                 </tbody>
@@ -185,6 +178,14 @@ CardDetails.propTypes = {
       })
     ),
     original_video_url: string,
+  }),
+  nutrition: shape({
+    calories: number,
+    fat: number,
+    carbohydrates: number,
+    fiber: number,
+    sugar: number,
+    protein: number,
   }),
   setToggleCardDetails: func.isRequired,
 };
