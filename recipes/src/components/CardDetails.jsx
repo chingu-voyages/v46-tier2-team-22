@@ -13,20 +13,18 @@ function CardDetails({ recipe, setToggleCardDetails }) {
     return true;
   }
 
-  console.log(recipe.id, recipe.nutrition)
-
   return (
     <div className="absolute top-10 left-1/6 w-4/5 h-auto outline-none">
       <div className="bg-Gunmetal-gray">
-        <div className="flex text-white">
-          <div className="flex flex-col justify-center w-1/2">
+        <div className="flex text-white border flex-col-reverse lg:flex-row " >
+          <div className="flex flex-col justify-center md:w-full lg:w-1/2">
             <img
-              className="text-black object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
+              className="text-black object-cover w-full h-40 sm:h-48 md:h-64 lg:h-full"
               src={recipe.thumbnail_url}
               alt={"dish" + recipe.id}
             />
           </div>
-          <div className="flex flex-col px-8 py-5 justify-center w-1/2">
+          <div className="flex flex-col px-10 py-20 justify-center w-full lg:w-1/2">
             <div className="flex w-full justify-between">
               <h5 className="text-xs sm:text-xl font-bold">{recipe.name}</h5>
               <div>
@@ -44,7 +42,9 @@ function CardDetails({ recipe, setToggleCardDetails }) {
               <div className="flex flex-col pr-4">
                 <p className="text-xs uppercase">Cook</p>
                 <p className="text-xs">
-                  {recipe.cook_time_minutes + " minutes"}
+                  {recipe.cook_time_minutes
+                    ? recipe.cook_time_minutes + " minutes"
+                    : recipe.total_time_tier.display_tier}
                 </p>
               </div>
               <div className="flex flex-col pl-4 border-l border-gray-400">
@@ -66,98 +66,91 @@ function CardDetails({ recipe, setToggleCardDetails }) {
             </div>
           </div>
         </div>
-        <table className="border-separate p-5 border-spacing-x-5 border-spacing-y-2 bg-Pewter border-t-2">
+        <table className="border-separate p-5 border-spacing-x-3 border-spacing-y-5 bg-Pewter border-t-2">
           <tbody>
-            <tr>
+            <tr className="flex flex-col lg:flex-row m-3">
               <td>
-                <h6 className="font-medium text-xs sm:text-xl">Instructions</h6>
+                <h6 className="font-medium text-xs sm:text-xl mb-3">Instructions</h6>
               </td>
               <td>
-                <ul className="px-5 text-xs list-disc list-inside space-y-2">
+                <ul className="px-12 text-xs list-disc list-outside space-y-2">
                   {recipe.instructions.map((step, idx) => (
                     <li key={idx}>{step.display_text}</li>
                   ))}
                 </ul>
               </td>
             </tr>
-            <tr>
-              <td>
-                <h6 className="font-medium text-xs sm:text-xl">Video</h6>
-              </td>
-              <td>
-                {recipe.video_url === null ? (
-                  <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
-                    No video not found
-                  </div>
-                ) : (
-                  <iframe
-                    src={recipe.original_video_url}
-                    width="400"
-                    height="250"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    title="video"
-                  />
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h6 className="font-medium text-xs sm:text-xl">
-                  Nutrition Value
-                </h6>
-              </td>
-              <td>
-                {isEmpty(recipe.more_info.nutrition) ? (
-                  <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
-                    No nutrition values found
-                  </div>
-                ) : (
-                  <table className="text-xs">
-                    <tbody>
-                      <tr>
-                        <td className="font-bold pt-1">Calories</td>
-                        <td className="pl-5 pt-1">
-                          {recipe.more_info.nutrition.calories}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="font-bold">Total Fat</td>
-                        <td className="pl-5">
-                          {recipe.more_info.nutrition.fat}g
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="font-bold">Total Carbohydrates</td>
-                        <td className="pl-5">
-                          {recipe.more_info.nutrition.carbohydrates}g
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="pl-3">Dietary Fiber</td>
-                        <td className="pl-5">
-                          {recipe.more_info.nutrition.fiber}g
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="pl-3">Sugars</td>
-                        <td className="pl-5">
-                          {recipe.more_info.nutrition.sugar}g
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="font-bold pb-1">Protein</td>
-                        <td className="pl-5 pb-1">
-                          {recipe.more_info.nutrition.protein}g
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                )}
-              </td>
-            </tr>
           </tbody>
         </table>
+        <div className="flex justify-center w-full px-10 pb-12 bg-Pewter items-center border-t-2 flex-col lg:flex-row">
+          <div className="flex flex-col w-full  pb-10 lg:max-w-xl lg:w-1/2 items-center justify-center">
+            <h6 className="font-medium text-xs sm:text-xl pt-8 pb-5">Video</h6>
+            {recipe.video_url === null ? (
+              <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
+                No video not found
+              </div>
+            ) : (
+              <iframe
+              
+                src={recipe.original_video_url}
+                width="400"
+                height="250"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title="video"
+              />
+            )}
+          </div>
+          <div className="flex flex-col w-full lg:w-1/2 h-full lg:pl-10 items-center pl-2 justify-center">
+            <h6 className="font-medium text-xs sm:text-xl pt-8 pb-5">
+              Nutrition Value
+            </h6>
+            {isEmpty(recipe.more_info.nutrition) ? (
+              <div className="px-5 text-xs sm:text-xl text-Gunmetal-gray">
+                No nutrition values found
+              </div>
+            ) : (
+              <table className="text-xs w-64 table-fixed">
+                <tbody>
+                  <tr>
+                    <td className="font-bold pt-1">Calories</td>
+                    <td className="pl-5 pt-2 text-right">
+                      {recipe.more_info.nutrition.calories}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">Total Fat</td>
+                    <td className="pl-5 pt-2 text-right">{recipe.more_info.nutrition.fat}g</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">Total Carbohydrates</td>
+                    <td className="pl-5 pt-2 text-right">
+                      {recipe.more_info.nutrition.carbohydrates}g
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="pl-3">Dietary Fiber</td>
+                    <td className="pl-5 text-right">
+                      {recipe.more_info.nutrition.fiber}g
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="pl-3">Sugars</td>
+                    <td className="pl-5 text-right">
+                      {recipe.more_info.nutrition.sugar}g
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold py-2">Protein</td>
+                    <td className="pl-5 pb-1 text-right">
+                      {recipe.more_info.nutrition.protein}g
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
