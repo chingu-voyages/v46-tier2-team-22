@@ -27,7 +27,7 @@ function CardDetails({ recipe, setToggleCardDetails }) {
           <div className="flex flex-col px-10 py-20 justify-center w-full lg:w-1/2">
             <div className="flex w-full justify-between">
               <h5 className="text-xs sm:text-xl font-bold">{recipe.name}</h5>
-              <div className="border ">
+              <div>
                 <button
                   type="button"
                   className="text-xs bg-Cinnabar hover:bg-Burnt-orange hover:text-white rounded-full px-2 py-1"
