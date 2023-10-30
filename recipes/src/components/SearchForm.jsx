@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const SearchForm = () => {
+import PropTypes from 'prop-types';
+
+const SearchForm = ({ingredients}) => {
   const [inputValue, setInputValue] = useState("");
-
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    ingredients(inputValue);
   };
   return (
     <div className="w-full h-full text-center flex flex-col justify-center items-center">
@@ -21,12 +23,16 @@ const SearchForm = () => {
           onChange={handleInputChange}
           className="w-4/5  bg-Pewter border border-Cinnabar"
         ></input>
-        <button type="submit" onSubmit={() => handleSubmit(e)} className="w-36 h-full bg-Cinnabar text-white  ml-3 rounded-sm">
+        <button type="submit" onSubmit={() => handleSubmit()} className="w-36 h-full bg-Cinnabar text-white  ml-3 rounded-sm">
           search
         </button>
       </form>
     </div>
   );
+};
+
+SearchForm.propTypes = {
+  ingredients: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

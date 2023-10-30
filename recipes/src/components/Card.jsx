@@ -1,49 +1,43 @@
-import { useState, useEffect } from "react";
-import { arrayOf, shape, number, string } from "prop-types";
+import { useState } from 'react';
+import { arrayOf, shape, number, string } from 'prop-types';
 
-import CardDetails from "./CardDetails";
+import CardDetails from './CardDetails';
 
 function Card({ recipe }) {
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
 
-
-
-    const fetchData = async () => {
-      const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipe.id}`;
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': 'ee0b1fde36mshe7ecd0895ee5283p1a0ad4jsna86fc2392562',
-          'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-        }
-      };
-      
-      try {
-        const response = await fetch(url, options);
-        if (response.ok) {
-          const result = await response.json();
-          return result.nutrition;
-        } else {
-          throw new Error('Failed to fetch nutrition data');
-        }
-      } catch (error) {
-        console.error(error);
-      }
+  const fetchData = async () => {
+    const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipe.id}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '1e16a8d7aemsh965bef850564727p10cb7bjsna6a7185b6c67',
+        'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
+      },
     };
 
-  
-  
+    try {
+      const response = await fetch(url, options);
+      if (response.ok) {
+        const result = await response.json();
+        return result.nutrition;
+      } else {
+        throw new Error('Failed to fetch nutrition data');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-const renderCardDetails = async () => {
-  try {
-    const nutritionData = await fetchData();
-    recipe.nutrition = nutritionData;
-    setToggleCardDetails(!toggleCardDetails);
-  } catch (error) {
-    console.error(error);
-
-  }
-};
+  const renderCardDetails = async () => {
+    try {
+      const nutritionData = await fetchData();
+      recipe.nutrition = nutritionData;
+      setToggleCardDetails(!toggleCardDetails);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   function handleParentClick(e) {
     if (e.target === e.currentTarget) {
@@ -53,35 +47,35 @@ const renderCardDetails = async () => {
 
   return (
     <>
-      <div className="flex flex-col border-solid overflow-hidden shadow-lg m-4 w-40 md:w-72 lg:w-96 h-fit bg-Pewter">
+      <div className='flex flex-col border-solid overflow-hidden shadow-lg m-4 w-40 md:w-72 lg:w-96 h-fit bg-Pewter'>
         <a
-          className="hover:bg-Freesia transition-all duration-500 cursor-pointer"
+          className='hover:bg-Freesia transition-all duration-500 cursor-pointer'
           onClick={renderCardDetails}
         >
           <img
-            className="object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
+            className='object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80'
             src={recipe.thumbnail_url}
-            alt={"dish" + recipe.id}
+            alt={'dish' + recipe.id}
           />
-          <div className="grow flex flex-col text-right p-2 md:h-1/2 justify-between">
-            <p className="p-2 text-xs sm:text-sm md:text-md font-bold">
+          <div className='grow flex flex-col text-right p-2 md:h-1/2 justify-between'>
+            <p className='p-2 text-xs sm:text-sm md:text-md font-bold'>
               {recipe.name}
             </p>
             {recipe.user_ratings.score !== null && (
-              <p className="text-xs sm:text-sm md:text-md">
-                Ratings:{" "}
+              <p className='text-xs sm:text-sm md:text-md'>
+                Ratings:{' '}
                 {Number(recipe.user_ratings.score).toLocaleString(undefined, {
-                  style: "percent",
+                  style: 'percent',
                   minimumFractionDigits: 0,
                 })}
               </p>
             )}
             {recipe.user_ratings.score === null && (
-              <p className="text-xs sm:text-sm md:text-md">
+              <p className='text-xs sm:text-sm md:text-md'>
                 No ratings submitted
               </p>
             )}
-            <p className="text-xs  sm:text-sm md:text-md text-Burnt-orange p-2">
+            <p className='text-xs  sm:text-sm md:text-md text-Burnt-orange p-2'>
               Go to recipe
             </p>
           </div>
@@ -90,7 +84,7 @@ const renderCardDetails = async () => {
       {/* Create a darkened background to provide focus on the popup & click outside the popup to close */}
       {toggleCardDetails && (
         <div
-          className="absolute top-0 left-0 w-screen h-full outline-none bg-gray-600 opacity-50"
+          className='absolute top-0 left-0 w-screen h-full outline-none bg-gray-600 opacity-50'
           onClick={handleParentClick}
         ></div>
       )}
