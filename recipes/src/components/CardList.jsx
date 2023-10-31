@@ -1,9 +1,18 @@
 import { useState } from 'react';
 import Card from './Card';
-// import dummyRecipes from "../data/dummyData";
+import { motion } from "framer-motion";
 import PropTypes from 'prop-types';
 
-// Your component here
+const variants = {
+  visible: i => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+    },
+  }),
+  hidden: { opacity: 0,y:-100},
+}
 
 CardList.propTypes = {
   cardDetails: PropTypes.array.isRequired,
@@ -25,8 +34,17 @@ function CardList({ cardDetails }) {
         className='relative flex flex-wrap items-center justify-evenly mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-25'
         id='card-holder'
       >
-        {recipes.slice(0, loadMore).map((recipe) => (
-          <Card recipe={recipe} key={recipe.id} />
+        {recipes.slice(0, loadMore).map((recipe,i) => (
+                  <motion.div
+                  key={recipe.id}
+                  custom={i}
+                  animate="visible"
+                  variants={variants}
+                  initial="hidden" 
+                  style={{ listStyle: "none" }}
+                >
+                <Card recipe={recipe} key={recipe.id} />
+                </motion.div>
         ))}
       </div>
       {loadMore < recipes.length && (
