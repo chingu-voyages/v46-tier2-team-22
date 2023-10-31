@@ -66,7 +66,7 @@ function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
             </div>
           </div>
         </div>
-        <table className="border-separate p-5 border-spacing-x-3 border-spacing-y-5 bg-Pewter border-t-2">
+        <table className="border-separate p-5 border-spacing-x-3 border-spacing-y-5 bg-Beige border-t-2">
           <tbody>
             <tr className="flex flex-col lg:flex-row m-3">
               <td>
