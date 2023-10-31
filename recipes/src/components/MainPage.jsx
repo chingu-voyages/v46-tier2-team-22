@@ -3,6 +3,7 @@ import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
 import ScrollToTop from "./ScrollToTop";
+import { motion } from "framer-motion";
 
 export const MainPage = () => {
   const [recipeData, setRecipeData] = useState([]);
@@ -31,7 +32,7 @@ export const MainPage = () => {
     fetchData();
   }, [normalizeRecipeIngredients]);
 
-  const inputIngredients = ingredients => {
+  const inputIngredients = (ingredients) => {
     setRecipeIngredients(ingredients);
   };
 
@@ -44,48 +45,66 @@ export const MainPage = () => {
   return (
     <main className="flex flex-col items-center justify-center max-w-screen-25 mx-auto font-montserrat">
       <section className="hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto">
-        <div className="flex items-center justify-center border w-10/12 h-3/4 my-20 bg-black/50">
-          <p className="text-xl sm:text-2xl xl:text-3xl 2xl:text-5xl text-center m-20 font-medium text-white">
-            Welcome to [App Name] - Your Culinary Companion! 🍳 Hungry for
-            inspiration? Explore a world of flavors and ingredients right at
-            your fingertips. Whether you are a seasoned chef or just starting
-            out, our app is here to make your cooking journey delightful.
-            Looking for a specific recipe or craving something delicious? Just
-            type it in, and watch our app work its magic. From quick dinners to
-            gourmet feasts, we have got you covered. Plan meals, create shopping
-            lists, and cook with confidence. New recipes, tips, and
-            mouthwatering photos await. Start your culinary adventure today!
-            Happy cooking! 🥘🍷🍰
-          </p>
-        </div>
+        <motion.div
+          initial={{ width: "100vw" }}
+          animate={{ width: "92%" }}
+          transition={{ duration: 1 }}
+          className="flex items-center flex-col justify-center  h-5/6 my-20 bg-black/50"
+        >
+          <motion.h1
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            className="text-xl sm:text-2xl xl:text-6xl 2xl:text8xl text-center m-2 font-extrabold text-gray-100"
+          >
+            [App Name]
+          </motion.h1>
+          <motion.p
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.3 }}
+            className="text-xl sm:text-2xl xl:text-3xl 2xl:text-5xl text-center m-10 font-light text-gray-200"
+          >
+            Your Culinary Companion
+          </motion.p>
+        </motion.div>
       </section>
 
       <section className="flex items-center bg-Gunmetal-gray w-screen max-w-screen-25 mx-auto">
-        <article className="flex items-center justify-center sm:flex-col sm:justify-evenly lg:flex-row lg:justify-evenly  gap-10 h-1/4 m-10 sm:m-20 2xl:m-40">
-          {/* <article className='flex items-center justify-evenly h-1/4 m-5 gap-10 border-red-600 border-spacing-6'> */}
-          <div className="flex flex-col justify-center lg:justify-start lg:mr-10 my-0 ">
-            {/* <div className='flex flex-col justify-start '> */}
-            <h1 className="text-xl text-center lg:text-left sm:text-2xl xl:text-4xl">
-              Title
-            </h1>
-            <p className="flex flex-wrap text-center lg:text-left sm:text-xl xl:text-2xl 2xl:text-3xl">
-              [App Name] streamlines your meal planning and prep. Input your
-              ingredients or cravings, and we will provide curated recipes from
-              quick weekday dinners to indulgent feasts. Each recipe includes
-              step-by-step instructions. For visual learners, we offer video
-              links. Say goodbye to shopping lists; we provide comprehensive
-              ingredients lists. [App Name] simplifies your cooking journey,
-              whether you are a pro or novice. Embark on a culinary adventure
-              today!
-            </p>
-          </div>
+      <article className="flex items-center justify-center sm:flex-col sm:justify-evenly lg:flex-row lg:justify-evenly gap-10 h-1/4 m-10 sm:m-20 2xl:m-40">
+      <motion.div
+        initial={{ x: -100, opacity: 0 }} 
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="flex flex-col justify-center lg:justify-start lg:mr-10 my-0"
+      >
+        <motion.h1
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="text-xl text-center lg:text-left sm:text-2xl xl:text-4xl mb-6 text-gray-300"
+        >
+          Hungry for inspiration?
+        </motion.h1>
+        <motion.p
+          initial={{ y: 100, opacity: 0 }} 
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="flex flex-wrap text-center lg:text-left sm:text-xl xl:text-xl 2xl:text2xl text-gray-300"
+        >
+          Explore a world of flavors and ingredients right at your fingertips. Whether you are a seasoned chef or just starting out, we make your cooking journey delightful. Looking for a specific recipe or craving something delicious? Just type it in, and voilà. Plan meals, cook with confidence. New recipes, tips, and mouthwatering photos await. Happy cooking!
+        </motion.p>
+      </motion.div>
 
-          <img
-            className="hidden md:flex md:min-w-0 h-auto lg:min-w-0 xl:min-w-0"
-            src={saladPic}
-            alt=""
-          />
-        </article>
+      <motion.img
+        initial={{ x: 100, opacity: 0, boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.3)" }} 
+        animate={{ x: 0, opacity: 1, boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)" }}
+        transition={{ duration: 1 }}
+        className="hidden md:flex md:min-w-0 h-auto lg:min-w-0 xl:min-w-0"
+        src={saladPic}
+        alt=""
+      />
+    </article>
       </section>
       <section className="flex items-center justify-center w-screen max-w-screen-25 h-[300px] md:h-[400px] lg:h-[600px] py-5 md:py-10 lg:py-12 bg-Pewter mx-auto">
         <div className="flex items-center justify-center w-10/12 border border-orange-700 h-full  bg-Pewter shadow-sm">
