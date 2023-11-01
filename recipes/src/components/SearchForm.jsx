@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import PropTypes from "prop-types";
 
-const SearchForm = ({ ingredients }) => {
+const SearchForm = ({ ingredients, setIsChangedState }) => {
   const [inputValue, setInputValue] = useState("");
   const handleInputChange = e => {
     setInputValue(e.target.value);
@@ -11,6 +11,7 @@ const SearchForm = ({ ingredients }) => {
   const handleSubmit = e => {
     e.preventDefault();
     ingredients(inputValue);
+    setIsChangedState(true);
   };
   return (
     <div className="w-full h-1/3 md:h-1/2 lg:h-full text-center flex flex-col justify-center items-center">
@@ -42,6 +43,7 @@ const SearchForm = ({ ingredients }) => {
 
 SearchForm.propTypes = {
   ingredients: PropTypes.func.isRequired,
+  setIsChangedState: PropTypes.func.isRequired,
 };
 
 export default SearchForm;
