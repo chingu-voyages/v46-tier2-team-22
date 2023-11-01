@@ -18,9 +18,8 @@ export const MainPage = () => {
         {
           method: "GET",
           headers: {
-            "x-rapidapi-key":
-              "266791d15fmsh037799e02266535p19f0bajsn2773c13e0d46",
-            "x-rapidapi-host": "tasty.p.rapidapi.com",
+            "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
+            "X-RapidAPI-Host": "tasty.p.rapidapi.com",
           },
         }
       );
