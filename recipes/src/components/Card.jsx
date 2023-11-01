@@ -13,7 +13,7 @@ function Card({ recipe }) {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "266791d15fmsh037799e02266535p19f0bajsn2773c13e0d46",
+        "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
         "X-RapidAPI-Host": "tasty.p.rapidapi.com",
       },
     };
@@ -54,7 +54,7 @@ function Card({ recipe }) {
 
   return (
     <>
-      <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-48 md:w-72 lg:w-104 h-fit bg-Pewter">
+      <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-2/3 md:w-1/4 h-fit bg-Pewter">
         <a
           className="hover:bg-Freesia transition-all duration-500 cursor-pointer"
           onClick={() => {

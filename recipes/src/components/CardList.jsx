@@ -21,7 +21,7 @@ function CardList({ cardDetails }) {
   return (
     <div className="flex flex-col">
       <div
-        className="relative flex flex-wrap items-center justify-evenly mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-25"
+        className="relative flex flex-col md:flex-row flex-wrap items-center justify-evenly mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-25"
         id="card-holder"
       >
         {recipes.slice(0, loadMore).map(recipe => (
