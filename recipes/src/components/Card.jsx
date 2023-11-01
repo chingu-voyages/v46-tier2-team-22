@@ -13,7 +13,7 @@ function Card({ recipe }) {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "266791d15fmsh037799e02266535p19f0bajsn2773c13e0d46",
+        "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
         "X-RapidAPI-Host": "tasty.p.rapidapi.com",
       },
     };
