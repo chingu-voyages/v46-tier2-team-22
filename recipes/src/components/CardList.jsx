@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "./Card";
-// import dummyRecipes from "../data/dummyData";
+import { motion, useAnimation } from "framer-motion";
 import PropTypes from "prop-types";
-
-// Your component here
 
 CardList.propTypes = {
   cardDetails: PropTypes.array.isRequired,
 };
 
 function CardList({ cardDetails }) {
-  const renderedCards = 3; //change value after dummy is replaced
+  const renderedCards = 6; 
   const recipes = cardDetails;
   const [loadMore, setLoadMore] = useState(renderedCards);
+  const controls = useAnimation();
+
+  const staggerDuration = 0.1;
+  const cardVariants = {
+    hidden: { x: -100, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
+  useEffect(() => {
+    const animateCards = async () => {
+      await controls.start("visible");
+    };
+
+    animateCards();
+
+    if (loadMore > 0) {
+      controls.start("hidden");
+    }
+  }, [loadMore]);
 
   const handleLoadMore = () => {
     setLoadMore(loadMore + renderedCards);
@@ -21,11 +38,21 @@ function CardList({ cardDetails }) {
   return (
     <div className="flex flex-col">
       <div
-        className="relative flex flex-col md:flex-row flex-wrap items-center justify-evenly mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-25"
+        className="relative flex flex-col md:flex-row flex-wrap items-center justify-center mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-2xl"
         id="card-holder"
       >
-        {recipes.slice(0, loadMore).map(recipe => (
-          <Card recipe={recipe} key={recipe.id} />
+        {recipes.slice(0, loadMore).map((recipe, index) => (
+          <motion.div
+            key={recipe.id}
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{
+              delay: index * staggerDuration,
+            }}
+          >
+            <Card recipe={recipe} key={recipe.id} />
+          </motion.div>
         ))}
       </div>
       {loadMore < recipes.length && (

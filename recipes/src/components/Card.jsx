@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { arrayOf, shape, number, string } from "prop-types";
-
 import CardDetails from "./CardDetails";
 
 function Card({ recipe }) {
@@ -54,19 +53,20 @@ function Card({ recipe }) {
 
   return (
     <>
-      <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-2/3 md:w-1/4 h-fit bg-Pewter">
+    
+   <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-[360px] md:w-[400px] h-[480px] bg-Pewter">
         <a
-          className="hover:bg-Freesia transition-all duration-500 cursor-pointer"
+          className="hover:bg-Freesia h-full transition-all duration-500 cursor-pointer"
           onClick={() => {
             setMoreDetailsRecipeId(recipe.id);
           }}
         >
           <img
-            className="object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80"
+            className="object-cover w-full h-80"
             src={recipe.thumbnail_url}
             alt={"dish" + recipe.id}
           />
-          <div className="grow flex flex-col text-right p-2 sm:p-4 md:p-6 lg:p-7 md:h-1/2 justify-between">
+          <div className="grow flex flex-col text-right p-8 md:p-7 lg:p-8 justify-start">
             <span className="p-2 text-xs sm:text-sm md:text-md font-bold">
               {recipe.name}
             </span>

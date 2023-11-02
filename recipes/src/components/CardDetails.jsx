@@ -14,7 +14,7 @@ function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
   }
 
   return (
-    <div className="absolute top-10 left-1/6 w-4/5 overflow-y-auto max-h-full border">
+    <div className="absolute inset-y-0 right-0 w-8/10 m-8 overflow-y-auto max-h-full border">
       <div className="bg-Gunmetal-gray">
         <div className="flex text-white border flex-col-reverse lg:flex-row ">
           <div className="flex flex-col justify-center items-center md:w-full lg:w-1/2">
