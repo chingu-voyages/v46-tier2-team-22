@@ -5,9 +5,11 @@ import PropTypes from "prop-types";
 
 CardList.propTypes = {
   cardDetails: PropTypes.array.isRequired,
+  PopupOpen: PropTypes.bool.isRequired,
 };
 
-function CardList({ cardDetails }) {
+function CardList({ cardDetails, PopupOpen }) {
+  const popUp = PopupOpen;
   const renderedCards = 6; 
   const recipes = cardDetails;
   const [loadMore, setLoadMore] = useState(renderedCards);
@@ -51,7 +53,7 @@ function CardList({ cardDetails }) {
               delay: index * staggerDuration,
             }}
           >
-            <Card recipe={recipe} key={recipe.id} />
+            <Card recipe={recipe} key={recipe.id} popUp={popUp} />
           </motion.div>
         ))}
       </div>

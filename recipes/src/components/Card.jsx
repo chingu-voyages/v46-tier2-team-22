@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { arrayOf, shape, number, string } from "prop-types";
+import { arrayOf, shape, number, string, bool } from "prop-types";
 import CardDetails from "./CardDetails";
 
-function Card({ recipe }) {
+function Card({ recipe, popUp }) {
+  const setPopUp = popUp;
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
   const [moreDetailsRecipeId, setMoreDetailsRecipeId] = useState(0);
   const [nutrition, setNutrition] = useState({});
@@ -36,6 +37,7 @@ function Card({ recipe }) {
         const nutritionData = await fetchData(moreDetailsRecipeId);
         setNutrition(nutritionData);
         setToggleCardDetails(!toggleCardDetails);
+        setPopUp(!toggleCardDetails);
       } catch (error) {
         console.error(error);
       }
@@ -48,6 +50,7 @@ function Card({ recipe }) {
   function handleParentClick(e) {
     if (e.target === e.currentTarget) {
       setToggleCardDetails(false);
+      setPopUp(false);
     }
   }
 
@@ -103,6 +106,7 @@ function Card({ recipe }) {
           recipe={recipe}
           nutrition={nutrition}
           setToggleCardDetails={setToggleCardDetails}
+          setPopUp={setPopUp}
         />
       )}
     </>
@@ -110,6 +114,7 @@ function Card({ recipe }) {
 }
 
 Card.propTypes = {
+  popUp: bool.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,
