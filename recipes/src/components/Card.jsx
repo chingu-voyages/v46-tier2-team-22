@@ -1,18 +1,20 @@
-import { useState } from 'react';
-import { arrayOf, shape, number, string } from 'prop-types';
+import { useEffect, useState } from "react";
+import { arrayOf, shape, number, string, bool } from "prop-types";
+import CardDetails from "./CardDetails";
 
-import CardDetails from './CardDetails';
-
-function Card({ recipe }) {
+function Card({ recipe, popUp }) {
+  const setPopUp = popUp;
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
+  const [moreDetailsRecipeId, setMoreDetailsRecipeId] = useState(0);
+  const [nutrition, setNutrition] = useState({});
 
-  const fetchData = async () => {
-    const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipe.id}`;
+  const fetchData = async recipeId => {
+    const url = `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`;
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'X-RapidAPI-Key': '1e16a8d7aemsh965bef850564727p10cb7bjsna6a7185b6c67',
-        'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
+        "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
+        "X-RapidAPI-Host": "tasty.p.rapidapi.com",
       },
     };
 
@@ -22,60 +24,70 @@ function Card({ recipe }) {
         const result = await response.json();
         return result.nutrition;
       } else {
-        throw new Error('Failed to fetch nutrition data');
+        throw new Error("Failed to fetch nutrition data");
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const renderCardDetails = async () => {
-    try {
-      const nutritionData = await fetchData();
-      recipe.nutrition = nutritionData;
-      setToggleCardDetails(!toggleCardDetails);
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    const renderCardDetails = async () => {
+      try {
+        const nutritionData = await fetchData(moreDetailsRecipeId);
+        setNutrition(nutritionData);
+        setToggleCardDetails(!toggleCardDetails);
+        setPopUp(!toggleCardDetails);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (moreDetailsRecipeId) {
+      renderCardDetails();
     }
-  };
+  }, [moreDetailsRecipeId]);
 
   function handleParentClick(e) {
     if (e.target === e.currentTarget) {
       setToggleCardDetails(false);
+      setPopUp(false);
     }
   }
 
   return (
     <>
-      <div className='flex flex-col border-solid overflow-hidden shadow-lg m-4 w-40 md:w-72 lg:w-96 h-fit bg-Pewter'>
+    
+   <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-[360px] md:w-[400px] h-[480px] bg-Pewter">
         <a
-          className='hover:bg-Freesia transition-all duration-500 cursor-pointer'
-          onClick={renderCardDetails}
+          className="hover:bg-Freesia h-full transition-all duration-500 cursor-pointer"
+          onClick={() => {
+            setMoreDetailsRecipeId(recipe.id);
+          }}
         >
           <img
-            className='object-cover w-full h-32 sm:h-48 md:h-64 lg:h-80'
+            className="object-cover w-full h-80"
             src={recipe.thumbnail_url}
-            alt={'dish' + recipe.id}
+            alt={"dish" + recipe.id}
           />
-          <div className='grow flex flex-col text-right p-2 md:h-1/2 justify-between'>
-            <p className='p-2 text-xs sm:text-sm md:text-md font-bold'>
+          <div className="grow flex flex-col text-right p-8 md:p-7 lg:p-8 justify-start">
+            <span className="p-2 text-xs sm:text-sm md:text-md font-bold">
               {recipe.name}
-            </p>
+            </span>
             {recipe.user_ratings.score !== null && (
-              <p className='text-xs sm:text-sm md:text-md'>
-                Ratings:{' '}
+              <p className="text-xs sm:text-sm md:text-md">
+                Ratings:{" "}
                 {Number(recipe.user_ratings.score).toLocaleString(undefined, {
-                  style: 'percent',
+                  style: "percent",
                   minimumFractionDigits: 0,
                 })}
               </p>
             )}
             {recipe.user_ratings.score === null && (
-              <p className='text-xs sm:text-sm md:text-md'>
+              <p className="text-xs sm:text-sm md:text-md">
                 No ratings submitted
               </p>
             )}
-            <p className='text-xs  sm:text-sm md:text-md text-Burnt-orange p-2'>
+            <p className="text-xs  sm:text-sm md:text-md text-Burnt-orange p-2">
               Go to recipe
             </p>
           </div>
@@ -84,7 +96,7 @@ function Card({ recipe }) {
       {/* Create a darkened background to provide focus on the popup & click outside the popup to close */}
       {toggleCardDetails && (
         <div
-          className='absolute top-0 left-0 w-screen h-full outline-none bg-gray-600 opacity-50'
+          className="absolute top-0 left-0 w-screen h-full outline-none bg-gray-600 opacity-50"
           onClick={handleParentClick}
         ></div>
       )}
@@ -92,7 +104,9 @@ function Card({ recipe }) {
       {toggleCardDetails && (
         <CardDetails
           recipe={recipe}
+          nutrition={nutrition}
           setToggleCardDetails={setToggleCardDetails}
+          setPopUp={setPopUp}
         />
       )}
     </>
@@ -100,6 +114,7 @@ function Card({ recipe }) {
 }
 
 Card.propTypes = {
+  popUp: bool.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,

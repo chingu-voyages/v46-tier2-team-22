@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
+<<<<<<< HEAD
+.env
+=======
+.env
+>>>>>>> upstream/dev
