@@ -1,8 +1,14 @@
-import { arrayOf, shape, number, string, func } from "prop-types";
+import { arrayOf, shape, number, string, func, bool } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
+function CardDetails({
+  recipe,
+  nutrition,
+  setToggleCardDetails,
+  setMoreDetailsRecipeId,
+  setPopUp,
+}) {
   function isEmpty(obj) {
     for (const prop in obj) {
       if (Object.hasOwn(obj, prop)) {
@@ -14,9 +20,9 @@ function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
   }
 
   return (
-    <div className="absolute inset-y-0 right-0 w-8/10 m-8 overflow-y-auto max-h-full border">
+    <div className="fixed inset-y-10 right-0 w-4/5 h-4/5 m-8 overflow-y-auto border my-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3">
       <div className="bg-Gunmetal-gray">
-        <div className="flex text-white border flex-col-reverse lg:flex-row ">
+        <div className="flex text-white border flex-col-reverse lg:flex-row">
           <div className="flex flex-col justify-center items-center md:w-full lg:w-1/2">
             <img
               className="text-black object-cover w-full h-40 sm:h-48 md:h-64 lg:h-full"
@@ -31,7 +37,11 @@ function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
                 <button
                   type="button"
                   className="text-xs bg-Cinnabar hover:bg-Burnt-orange hover:text-white rounded-full px-2 py-1"
-                  onClick={() => setToggleCardDetails(false)}
+                  onClick={() => {
+                    setToggleCardDetails(false);
+                    setMoreDetailsRecipeId(0);
+                    setPopUp(false);
+                  }}
                 >
                   <FontAwesomeIcon icon={faX} />
                 </button>
@@ -156,6 +166,7 @@ function CardDetails({ recipe, nutrition, setToggleCardDetails }) {
 }
 
 CardDetails.propTypes = {
+  setPopUp: bool.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,
@@ -190,6 +201,7 @@ CardDetails.propTypes = {
     protein: number,
   }),
   setToggleCardDetails: func.isRequired,
+  setMoreDetailsRecipeId: func.isRequired,
 };
 
 export default CardDetails;

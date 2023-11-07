@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { arrayOf, shape, number, string } from "prop-types";
+import { arrayOf, shape, number, string, bool } from "prop-types";
 import CardDetails from "./CardDetails";
 
-function Card({ recipe }) {
+function Card({ recipe, popUp }) {
+  const setPopUp = popUp;
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
   const [moreDetailsRecipeId, setMoreDetailsRecipeId] = useState(0);
   const [nutrition, setNutrition] = useState({});
@@ -36,6 +37,7 @@ function Card({ recipe }) {
         const nutritionData = await fetchData(moreDetailsRecipeId);
         setNutrition(nutritionData);
         setToggleCardDetails(!toggleCardDetails);
+        setPopUp(!toggleCardDetails);
       } catch (error) {
         console.error(error);
       }
@@ -48,13 +50,14 @@ function Card({ recipe }) {
   function handleParentClick(e) {
     if (e.target === e.currentTarget) {
       setToggleCardDetails(false);
+      setMoreDetailsRecipeId(0);
+      setPopUp(false);
     }
   }
 
   return (
     <>
-    
-   <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-[360px] md:w-[400px] h-[480px] bg-Pewter">
+      <div className="flex flex-col border-solid overflow-hidden shadow-lg m-6 w-[360px] md:w-[400px] h-[480px] bg-Pewter">
         <a
           className="hover:bg-Freesia h-full transition-all duration-500 cursor-pointer"
           onClick={() => {
@@ -93,7 +96,7 @@ function Card({ recipe }) {
       {/* Create a darkened background to provide focus on the popup & click outside the popup to close */}
       {toggleCardDetails && (
         <div
-          className="absolute top-0 left-0 w-screen h-full outline-none bg-gray-600 opacity-50"
+          className="fixed top-0 left-0 w-screen h-full outline-none bg-gray-600 opacity-50"
           onClick={handleParentClick}
         ></div>
       )}
@@ -103,6 +106,8 @@ function Card({ recipe }) {
           recipe={recipe}
           nutrition={nutrition}
           setToggleCardDetails={setToggleCardDetails}
+          setMoreDetailsRecipeId={setMoreDetailsRecipeId}
+          setPopUp={setPopUp}
         />
       )}
     </>
@@ -110,6 +115,7 @@ function Card({ recipe }) {
 }
 
 Card.propTypes = {
+  popUp: bool.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,
