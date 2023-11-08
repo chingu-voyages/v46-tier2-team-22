@@ -5,7 +5,9 @@ import fetchData from "../utils/fetchData";
 function FilterTags({ setFilterTagValue, setIsChangedState }) {
   const [tagsList, setTagsList] = useState([]);
   const [selectedType, setSelectedType] = useState("");
-  const filterTypes = Array.from(new Set(tagsList.map(x => x.root_tag_type)));
+  // const filterTypes = Array.from(new Set(tagsList.map(x => x.root_tag_type)));
+  // Opting to limit filter types to top 3 options for simplicity
+  const filterTypes = ["cuisine", "dietary", "difficulty"];
 
   useEffect(() => {
     const url = `https://tasty.p.rapidapi.com/tags/list`;
@@ -23,7 +25,7 @@ function FilterTags({ setFilterTagValue, setIsChangedState }) {
 
   return (
     <div className="hidden sm:flex py-3 justify-start text-sm">
-      <label className="pr-2 px-2">Search filters: </label>
+      <label className="pr-2 px-2">Apply filters: </label>
       <select
         name="filterTypes"
         id="filterTypes"
