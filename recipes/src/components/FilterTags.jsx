@@ -11,7 +11,15 @@ function FilterTags({ setFilterTagValue, setIsChangedState }) {
 
   useEffect(() => {
     const url = `https://tasty.p.rapidapi.com/tags/list`;
-    fetchData("GET", url, setTagsList);
+    fetchData("GET", url).then(data => {
+      setTagsList(
+        data.results.sort(function (a, b) {
+          let first = a.display_name.toLowerCase();
+          let second = b.display_name.toLowerCase();
+          return first < second ? -1 : first > second ? 1 : 0;
+        })
+      );
+    });
   }, []);
 
   function handleFilter(e) {
@@ -35,7 +43,7 @@ function FilterTags({ setFilterTagValue, setIsChangedState }) {
         <option value="">-- Select filter type --</option>
         {filterTypes.map(type => (
           <option key={type} value={type}>
-            {type.slice(0, 1).toUpperCase() + type.slice(1)}
+            {type.slice(0, 1).toUpperCase() + type.slice(1).replace("_", " ")}
           </option>
         ))}
       </select>

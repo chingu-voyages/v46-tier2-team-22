@@ -1,4 +1,4 @@
-async function fetchData(method, url, setData) {
+async function fetchData(method, url) {
   const response = await fetch(url, {
     method: method,
     headers: {
@@ -6,10 +6,7 @@ async function fetchData(method, url, setData) {
       "X-RapidAPI-Host": "tasty.p.rapidapi.com",
     },
   });
-  const data = await response.json();
-  if (data && data.results) {
-    setData(data.results);
-  }
+  return await response.json();
 }
 
 export default fetchData;
