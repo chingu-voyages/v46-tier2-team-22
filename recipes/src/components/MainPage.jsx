@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
+import logo from "../images/flavor-finds-light.png";
 import ScrollToTop from "./ScrollToTop";
 import { motion } from "framer-motion";
 
@@ -56,24 +57,25 @@ export const MainPage = () => {
         }`}
       >
         <motion.div
-          initial={{ width: "100vw" }}
-          animate={{ width: "92%" }}
-          transition={{ duration: 1 }}
-          className="flex items-center flex-col justify-center  h-5/6 my-20 bg-black/50"
+          initial={{ width: "100vw", height: "100%" }}
+          animate={{ width: "95%" ,height:"95%"}}
+          transition={{ duration: 0.8 }}
+          className="flex items-center flex-col justify-center  h-5/6 my-16 bg-black/60"
         >
-          <motion.h1
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1.2 }}
-            className="text-xl sm:text-2xl xl:text-6xl 2xl:text8xl text-center m-2 font-extrabold text-gray-100"
-          >
-            FlavorFinds
-          </motion.h1>
+          <motion.img
+            initial={{ x: -400,opacity:0 }}
+            animate={{ x: 0 ,opacity:1}}
+            transition={{ duration: 1 }}
+            className="w-1/2 md:4/6 max-w-2xl min-w-xl"
+            src={logo}
+            alt="flavor-findslogo"
+          />
+
           <motion.p
             initial={{ x: 300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1.3 }}
-            className="text-xl sm:text-2xl xl:text-3xl 2xl:text-5xl text-center m-10 font-light text-gray-200"
+            transition={{ duration: 1.2 }}
+            className="text-2xl sm:text-2xl md:text-4xl xl:text-5xl text-center tracking-wider -m-2 font-sacramento text-gray-300"
           >
             Your Culinary Companion
           </motion.p>
@@ -129,7 +131,7 @@ export const MainPage = () => {
             transition={{ duration: 1 }}
             className="hidden md:flex md:min-w-0 h-auto lg:min-w-0 xl:min-w-0"
             src={saladPic}
-            alt=""
+            alt="salad"
           />
         </article>
       </section>
