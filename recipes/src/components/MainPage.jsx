@@ -67,7 +67,7 @@ export const MainPage = () => {
             transition={{ duration: 1.2 }}
             className="text-xl sm:text-2xl xl:text-6xl 2xl:text8xl text-center m-2 font-extrabold text-gray-100"
           >
-            Flavor Finds
+            FlavorFinds
           </motion.h1>
           <motion.p
             initial={{ x: 300, opacity: 0 }}
