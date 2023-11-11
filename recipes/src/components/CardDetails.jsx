@@ -1,4 +1,4 @@
-import { arrayOf, shape, number, string, func, bool, oneOfType } from "prop-types";
+import { arrayOf, shape, number, string, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
@@ -166,7 +166,7 @@ function CardDetails({
 }
 
 CardDetails.propTypes = {
-  setIsPopupOpen: oneOfType([bool, func]).isRequired,
+  setIsPopupOpen: func.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,

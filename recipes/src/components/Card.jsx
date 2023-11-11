@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { arrayOf, shape, number, string, bool, func, oneOfType } from "prop-types";
+import { arrayOf, shape, number, string, bool, func } from "prop-types";
 import CardDetails from "./CardDetails";
-
 
 function Card({ recipe, setIsPopupOpen }) {
   // const setPopUp = popUp;
@@ -38,7 +37,7 @@ function Card({ recipe, setIsPopupOpen }) {
         const nutritionData = await fetchData(moreDetailsRecipeId);
         setNutrition(nutritionData);
         setToggleCardDetails(!toggleCardDetails);
-    setIsPopupOpen(!toggleCardDetails);
+        setIsPopupOpen(!toggleCardDetails);
       } catch (error) {
         console.error(error);
       }
@@ -116,7 +115,7 @@ function Card({ recipe, setIsPopupOpen }) {
 }
 
 Card.propTypes = {
-  setIsPopupOpen: oneOfType([bool, func]).isRequired,
+  setIsPopupOpen: func.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,
