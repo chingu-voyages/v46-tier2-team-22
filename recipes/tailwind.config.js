@@ -26,6 +26,8 @@ export default {
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans"],
+        sacramento:["Sacramento","sans"]
+
       },
       width: {
         104: "26rem",
