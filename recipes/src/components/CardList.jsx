@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
 import { motion, useAnimation } from "framer-motion";
-import PropTypes from "prop-types";
+import { array, func } from "prop-types";
 
 CardList.propTypes = {
-  cardDetails: PropTypes.array.isRequired,
-  PopupOpen: PropTypes.bool.isRequired,
+  cardDetails: array.isRequired,
+  setIsPopupOpen: func.isRequired,
 };
 
-function CardList({ cardDetails, PopupOpen }) {
-  const popUp = PopupOpen;
-  const renderedCards = 6; 
+function CardList({ cardDetails, setIsPopupOpen }) {
+  // const popUp = PopupOpen;
+  const renderedCards = 6;
   const recipes = cardDetails;
   const [loadMore, setLoadMore] = useState(renderedCards);
   const controls = useAnimation();
@@ -53,7 +53,11 @@ function CardList({ cardDetails, PopupOpen }) {
               delay: index * staggerDuration,
             }}
           >
-            <Card recipe={recipe} key={recipe.id} popUp={popUp} />
+            <Card
+              recipe={recipe}
+              key={recipe.id}
+              setIsPopupOpen={setIsPopupOpen}
+            />
           </motion.div>
         ))}
       </div>
