@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import logo from "../images/flavor-finds-dark.png";
 
 function Footer() {
   const devs = [
@@ -21,22 +21,11 @@ function Footer() {
       name: "Valeriy Lysenko",
       githubLink: "https://github.com/Valeriusdev",
     },
-=======
-import React from 'react';
-import darkLogo from "../images/flavor-finds-dark.png"
-export const Footer = () => {
-  const developers = "developers";
-  const githubLinks = [
-    <a href="https://github.com/chef-louis" target="_blank" rel="noopener noreferrer" className="font-semibold">Louis Choi</a>,
-    <a href="https://github.com/HectorAgudelo" target="_blank" rel="noopener noreferrer" className="font-semibold">Hector Agudelo</a>,
-    <a href="https://github.com/pm-moyanor" target="_blank" rel="noopener noreferrer" className="font-semibold">Paula Moyano</a>,
-    <a href="https://github.com/Valeriusdev" target="_blank" rel="noopener noreferrer" className="font-semibold">Valeriy Lysenko</a>    
->>>>>>> 163b929 (]add footer logo)
   ];
 
   return (
-    <div className="flex items-center bg-Pewter py-14">
-      <div className="w-full p-4 pl-20 md:pl-30 lg:md:pl-40 flex items-start justify-start">
+    <div className="flex items-center justify-evenly flex-wrap bg-Pewter py-14">
+      <div className=" p-4 flex items-start justify-start">
         <div className="flex flex-col items-start">
           <p className="text-left text-xs sm:text-sm md:text-md pb-5 pr-4">
             Built with <FontAwesomeIcon icon={faHeart} /> by:
@@ -67,8 +56,9 @@ export const Footer = () => {
             ))}
           </tbody>
         </table>
+      
       </div>
-      <img src={darkLogo} alt="logo" className='w-36'></img>
+      <img src={logo} className="w-40 p-4 md:w-64 pt-12 md:pt-0"></img>
     </div>
   );
 }

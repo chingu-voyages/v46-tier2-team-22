@@ -98,7 +98,7 @@ export const MainPage = () => {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1 }}
-              className="text-xl text-center lg:text-left sm:text-2xl xl:text-4xl mb-6 text-gray-300"
+              className="text-4xl text-center lg:text-left md:text-5xl xl:text-6xl mb-6 font-sacramento text-gray-300"
             >
               Hungry for inspiration?
             </motion.h1>
