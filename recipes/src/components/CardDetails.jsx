@@ -1,4 +1,4 @@
-import { arrayOf, shape, number, string, func, bool } from "prop-types";
+import { arrayOf, shape, number, string, func, bool, oneOfType } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,7 +7,7 @@ function CardDetails({
   nutrition,
   setToggleCardDetails,
   setMoreDetailsRecipeId,
-  isPopUpOpen,
+  setIsPopupOpen,
 }) {
   function isEmpty(obj) {
     for (const prop in obj) {
@@ -40,7 +40,7 @@ function CardDetails({
                   onClick={() => {
                     setToggleCardDetails(false);
                     setMoreDetailsRecipeId(0);
-                    isPopUpOpen(false);
+                    setIsPopupOpen(false);
                   }}
                 >
                   <FontAwesomeIcon icon={faX} />
@@ -166,7 +166,7 @@ function CardDetails({
 }
 
 CardDetails.propTypes = {
-  isPopUpOpen: bool.isRequired,
+  setIsPopupOpen: oneOfType([bool, func]).isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,
