@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -20,6 +21,17 @@ function Footer() {
       name: "Valeriy Lysenko",
       githubLink: "https://github.com/Valeriusdev",
     },
+=======
+import React from 'react';
+import darkLogo from "../images/flavor-finds-dark.png"
+export const Footer = () => {
+  const developers = "developers";
+  const githubLinks = [
+    <a href="https://github.com/chef-louis" target="_blank" rel="noopener noreferrer" className="font-semibold">Louis Choi</a>,
+    <a href="https://github.com/HectorAgudelo" target="_blank" rel="noopener noreferrer" className="font-semibold">Hector Agudelo</a>,
+    <a href="https://github.com/pm-moyanor" target="_blank" rel="noopener noreferrer" className="font-semibold">Paula Moyano</a>,
+    <a href="https://github.com/Valeriusdev" target="_blank" rel="noopener noreferrer" className="font-semibold">Valeriy Lysenko</a>    
+>>>>>>> 163b929 (]add footer logo)
   ];
 
   return (
@@ -56,6 +68,7 @@ function Footer() {
           </tbody>
         </table>
       </div>
+      <img src={darkLogo} alt="logo" className='w-36'></img>
     </div>
   );
 }
