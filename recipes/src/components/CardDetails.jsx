@@ -7,7 +7,7 @@ function CardDetails({
   nutrition,
   setToggleCardDetails,
   setMoreDetailsRecipeId,
-  setPopUp,
+  isPopUpOpen,
 }) {
   function isEmpty(obj) {
     for (const prop in obj) {
@@ -40,7 +40,7 @@ function CardDetails({
                   onClick={() => {
                     setToggleCardDetails(false);
                     setMoreDetailsRecipeId(0);
-                    setPopUp(false);
+                    isPopUpOpen(false);
                   }}
                 >
                   <FontAwesomeIcon icon={faX} />
@@ -166,7 +166,7 @@ function CardDetails({
 }
 
 CardDetails.propTypes = {
-  setPopUp: bool.isRequired,
+  isPopUpOpen: bool.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,

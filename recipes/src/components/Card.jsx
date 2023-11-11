@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { arrayOf, shape, number, string, bool } from "prop-types";
 import CardDetails from "./CardDetails";
 
-function Card({ recipe, popUp }) {
-  const setPopUp = popUp;
+
+function Card({ recipe, isPopUpOpen }) {
+  // const setPopUp = popUp;
   const [toggleCardDetails, setToggleCardDetails] = useState(false);
   const [moreDetailsRecipeId, setMoreDetailsRecipeId] = useState(0);
   const [nutrition, setNutrition] = useState({});
@@ -37,7 +38,7 @@ function Card({ recipe, popUp }) {
         const nutritionData = await fetchData(moreDetailsRecipeId);
         setNutrition(nutritionData);
         setToggleCardDetails(!toggleCardDetails);
-        setPopUp(!toggleCardDetails);
+    isPopUpOpen(!toggleCardDetails);
       } catch (error) {
         console.error(error);
       }
@@ -51,7 +52,7 @@ function Card({ recipe, popUp }) {
     if (e.target === e.currentTarget) {
       setToggleCardDetails(false);
       setMoreDetailsRecipeId(0);
-      setPopUp(false);
+      isPopUpOpen(false);
     }
   }
 
@@ -107,7 +108,7 @@ function Card({ recipe, popUp }) {
           nutrition={nutrition}
           setToggleCardDetails={setToggleCardDetails}
           setMoreDetailsRecipeId={setMoreDetailsRecipeId}
-          setPopUp={setPopUp}
+          isPopUpOpen={isPopUpOpen}
         />
       )}
     </>
@@ -115,7 +116,7 @@ function Card({ recipe, popUp }) {
 }
 
 Card.propTypes = {
-  popUp: bool.isRequired,
+  isPopUpOpen: bool.isRequired,
   recipe: shape({
     id: number.isRequired,
     name: string.isRequired,

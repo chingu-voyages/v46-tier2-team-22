@@ -133,7 +133,7 @@ export const MainPage = () => {
       </section>
 
       <section className={`flex justify-center items-center  bg-Gunmetal-gray w-full`}>
-        <CardList cardDetails={recipeData} PopupOpen={setIsPopupOpen} />
+        <CardList cardDetails={recipeData} isPopupOpen={setIsPopupOpen} />
       </section>
       <ScrollToTop />
     </main>
