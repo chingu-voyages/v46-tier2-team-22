@@ -26,8 +26,7 @@ export default {
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans"],
-        sacramento:["Sacramento","sans"]
-
+        sacramento: ["Sacramento", "sans"],
       },
       width: {
         104: "26rem",
@@ -40,4 +39,5 @@ export default {
     },
   },
   plugins: [],
+  purge: ["./src/components/**/*.{js,jsx}", "./index.html"],
 };
