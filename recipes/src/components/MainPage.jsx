@@ -3,6 +3,7 @@ import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
 import logo from "../images/flavor-finds-light.png";
+import saladImg from "../images/salads.jpg";
 import ScrollToTop from "./ScrollToTop";
 import { motion } from "framer-motion";
 
@@ -52,19 +53,20 @@ export const MainPage = () => {
       className={`flex flex-col items-center justify-center max-w-screen-25 mx-auto font-montserrat`}
     >
       <section
-        className={`hidden sm:flex items-center justify-center h-screen w-screen bg-Salad bg-cover shadow-lg max-w-screen-25 mx-auto ${
+        className={`hidden sm:flex items-center justify-center h-screen w-screen bg-cover shadow-lg max-w-screen-25 mx-auto ${
           isPopupOpen ? "opacity-80" : ""
         }`}
+        style={{ backgroundImage: `url(${saladImg})` }}
       >
         <motion.div
           initial={{ width: "100vw", height: "100%" }}
-          animate={{ width: "95%" ,height:"95%"}}
+          animate={{ width: "95%", height: "95%" }}
           transition={{ duration: 0.8 }}
           className="flex items-center flex-col justify-center  h-5/6 my-16 bg-black/60"
         >
           <motion.img
-            initial={{ x: -400,opacity:0 }}
-            animate={{ x: 0 ,opacity:1}}
+            initial={{ x: -400, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1 }}
             className="w-1/2 md:4/6 max-w-2xl min-w-xl"
             src={logo}
