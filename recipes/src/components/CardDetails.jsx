@@ -54,7 +54,9 @@ function CardDetails({
                 <p className="text-xs">
                   {recipe.cook_time_minutes
                     ? recipe.cook_time_minutes + " minutes"
-                    : recipe.total_time_tier.display_tier}
+                    : "display_tier" in recipe
+                    ? recipe.total_time_tier.display_tier
+                    : "N/A minutes"}
                 </p>
               </div>
               <div className="flex flex-col pl-4 border-l border-gray-400">

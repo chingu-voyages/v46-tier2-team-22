@@ -11,6 +11,7 @@ export const MainPage = () => {
   const [isChangedState, setIsChangedState] = useState(false);
   const [recipeData, setRecipeData] = useState([]);
   const [recipeIngredients, setRecipeIngredients] = useState("");
+  const [filterTagValue, setFilterTagValue] = useState("");
   const [normalizeRecipeIngredients, setNormalizeRecipeIngredients] =
     useState("corn");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -19,7 +20,7 @@ export const MainPage = () => {
     // fetch data from an api and set the state with it
     async function fetchData() {
       const response = await fetch(
-        `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes&q=${normalizeRecipeIngredients}`,
+        `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=${filterTagValue}&q=${normalizeRecipeIngredients}`,
         {
           method: "GET",
           headers: {
@@ -35,8 +36,9 @@ export const MainPage = () => {
     }
     if (isChangedState || normalizeRecipeIngredients != "") {
       fetchData();
+      setIsChangedState(false);
     }
-  }, [normalizeRecipeIngredients]);
+  }, [normalizeRecipeIngredients, filterTagValue]);
 
   const inputIngredients = ingredients => {
     setRecipeIngredients(ingredients);
@@ -146,6 +148,7 @@ export const MainPage = () => {
           <SearchForm
             ingredients={inputIngredients}
             setIsChangedState={setIsChangedState}
+            setFilterTagValue={setFilterTagValue}
           />
         </div>
       </section>
