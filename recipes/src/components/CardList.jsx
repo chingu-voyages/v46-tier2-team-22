@@ -43,23 +43,29 @@ function CardList({ cardDetails, setIsPopupOpen }) {
         className="relative flex flex-col md:flex-row flex-wrap items-center justify-center mx-auto mb-5 py-6 bg-Gunmetal-gray w-screen max-w-screen-2xl"
         id="card-holder"
       >
-        {recipes.slice(0, loadMore).map((recipe, index) => (
-          <motion.div
-            key={recipe.id}
-            variants={cardVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{
-              delay: index * staggerDuration,
-            }}
-          >
-            <Card
-              recipe={recipe}
+        {recipes.length > 0 ? (
+          recipes.slice(0, loadMore).map((recipe, index) => (
+            <motion.div
               key={recipe.id}
-              setIsPopupOpen={setIsPopupOpen}
-            />
-          </motion.div>
-        ))}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                delay: index * staggerDuration,
+              }}
+            >
+              <Card
+                recipe={recipe}
+                key={recipe.id}
+                setIsPopupOpen={setIsPopupOpen}
+              />
+            </motion.div>
+          ))
+        ) : (
+          <p className="font-bold hover:text-Cinnabar">
+            No results. Please change query filters and try again.
+          </p>
+        )}
       </div>
       {loadMore < recipes.length && (
         <button
