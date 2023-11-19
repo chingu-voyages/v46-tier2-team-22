@@ -3,7 +3,7 @@ import SearchForm from "./SearchForm";
 import CardList from "./CardList";
 import saladPic from "../images/salads.jpg";
 import logo from "../images/flavor-finds-light.png";
-import saladImg from "../images/salads.jpg";
+import manyDishes from "../images/manyDishes.jpg";
 import ScrollToTop from "./ScrollToTop";
 import { motion } from "framer-motion";
 
@@ -56,7 +56,7 @@ export const MainPage = () => {
         className={`hidden sm:flex items-center justify-center h-screen w-screen bg-cover shadow-lg max-w-screen-25 mx-auto ${
           isPopupOpen ? "opacity-80" : ""
         }`}
-        style={{ backgroundImage: `url(${saladImg})` }}
+        style={{ backgroundImage: `url(${manyDishes})` }}
       >
         <motion.div
           initial={{ width: "100vw", height: "100%" }}
