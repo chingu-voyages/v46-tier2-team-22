@@ -20,7 +20,7 @@ function CardDetails({
   }
 
   return (
-    <div className="fixed inset-y-10 right-0 w-4/5 h-4/5 m-8 overflow-y-auto border my-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3">
+    <div className="fixed inset-y-10 right-0 w-4/5 h-4/5 m-auto overflow-x-clip overflow-y-auto border my-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3">
       <div className="bg-Gunmetal-gray">
         <div className="flex text-white border flex-col-reverse lg:flex-row">
           <div className="flex flex-col justify-center items-center md:w-full lg:w-1/2">
