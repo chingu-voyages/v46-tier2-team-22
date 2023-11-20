@@ -27,7 +27,7 @@ const SearchForm = ({ ingredients, setIsChangedState }) => {
           placeholder="I want to make.."
           value={inputValue}
           onChange={handleInputChange}
-          className="w-full bg-Pewter border border-Cinnabar mb-2 md:mb-0 text-xs md:text-sm h-7 md:h-9 pl-3"
+          className="w-full bg-Pewter placeholder-black border border-Cinnabar mb-2 md:mb-0 text-xs md:text-sm h-7 md:h-9 pl-3"
         ></input>
         <button
           type="submit"
